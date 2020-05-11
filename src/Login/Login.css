@@ -1,0 +1,46 @@
+.divLogin{
+    width: 100%;
+    height: 750px;
+    position: absolute;
+    margin-top: -50px;
+    background: rgb(0, 0, 0, .5);
+    z-index: 2;
+
+}
+
+.contenedorLogin{
+    width: 50%;
+    height: 450px;
+    margin-left: 25%;
+    margin-top: 100px;
+    background: white;
+    border-radius: 5px;
+}
+
+.divTituloLogin{
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid grey;
+}
+
+.divTituloLogin h2{
+    margin-left: 45%;
+    margin-top: 10px;
+    font-size: 30px;
+    float: left;
+}
+
+.divTituloLogin input[type='button']{
+    width: 5%;
+    height: 40px;
+    border-radius: 50px;
+    border: none;
+    float: right;
+    margin-right: 2%;
+    margin-top: 5px;
+    box-shadow: 3px 3px 3px grey;
+    cursor: pointer;
+    color: white;
+    background: #282c34;
+}
+
