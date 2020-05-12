@@ -1,6 +1,8 @@
 import React from 'react';
 //css
 import './Registrarse.css';
+//encriptar clave
+import CryptoJS from 'crypto-js/md5';
 
 class Registrarse extends React.Component{
 
@@ -20,14 +22,68 @@ class Registrarse extends React.Component{
 
     handleSubmit = (event) => {
         event.preventDefault();
+        let  hash = '';
+        if(!this.state.nombre){
+            alert('Rellene el nombre correctamente')
+        }
+        else if(!this.state.apellido){
+            alert('Rellene el aleppido correctamente')
+        }
+        else if(!this.state.nacimiento){
+            alert('Rellene la fecha de nacimiento correctamente')
+        }
+        else if(!this.state.sexo || this.state.sexo === '1'){
+            alert('Rellene el sexo correctamente')
+        }
+        else if(!this.state.correo){
+            alert('Rellene el correo correctamente')
+        }
+        else if(!this.state.clave){
+            alert('Rellene la clave correctamente')
+          
+        }
+        else if(!this.state.rClave || this.state.rClave !== this.state.clave){
+            alert('Las contraseñas deven coincidir')
+        }
+        else{
+            //encriptamos la clave
+            hash = CryptoJS(this.state.clave);
 
-        console.log(this.state.nombre)
-        console.log(this.state.apellido)
-        console.log(this.state.nacimiento)
-        console.log(this.state.sexo)
-        console.log(this.state.correo)
-        console.log(this.state.clave)
-        console.log(this.state.rClave)
+            let usuario = 
+                {
+                    nombre: this.state.nombre,
+                    apellido: this.state.apellido,
+                    nacimiento: this.state.nacimiento,
+                    sexo: this.state.sexo,
+                    correo: this.state.correo,
+                    clave:JSON.stringify(hash)
+                };
+
+            // console.log(usuario);    
+            const data = new URLSearchParams(`nombre=${this.state.nombre}&apellido=${this.state.apellido}&nacimiento=${this.state.nacimiento}&sexo=${this.state.sexo}&correo=${this.state.correo}&clave=${JSON.stringify(hash)}`);
+
+            fetch('http://localhost:3001/api/addUser',{method:'POST', body: data})
+            .then(data => data.json())
+            .then(response => {
+                console.log(response);
+                alert('registrado corrrectamente');
+                //llamaos a la funcion para qeu se cierre la ventana de registro
+                const funcionAparecerDesaparecerRegistro = this.props.funcionAparecerDesaparecerRegistro;
+                funcionAparecerDesaparecerRegistro();
+                //llamamos a la funcion para que se abra la ventana de login
+                const funcionAparecerDesaparecerLogin = this.props.funcionAparecerDesaparecerLogin;
+                funcionAparecerDesaparecerLogin();
+                
+                
+            })   
+            .catch(err => {
+                console.log(err.message)
+            })
+        }
+
+        this.setState({nombre:'', apellido:'', nacimiento:'', sexo:'', correo:'', clave:'', rClave:''});
+
+        
     }
 
 
@@ -50,7 +106,8 @@ class Registrarse extends React.Component{
                         <br></br>
                         <input type='date' value={this.state.nacimiento} onChange={(params) => {this.setState({nacimiento:params.target.value})}} placeholder='nacimineto'></input>
                         <br></br>
-                        <select onChange={(params) => {this.setState({sexo:params.target.value})}}>
+                        <select value={this.state.sexo} onChange={(params) => {this.setState({sexo:params.target.value})}}>
+                            <option value='1'>--Seleccione Sexo--</option>
                             <option value='hombre'>Hombre</option>
                             <option value='mujer'>Mujer</option>
                         </select>

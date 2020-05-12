@@ -22,10 +22,17 @@ class App extends React.Component{
                 bLoginOCerrarSesion: false,
                 aparecerMenu: '0%',
                 ventanaLogin: false,
-                ventanaRegistro: false
+                ventanaRegistro: false,
+                botonPerfil:false
             }
     }
     
+    componentDidMount(){
+        if(localStorage.getItem('primariKey') && localStorage.getItem('nombreUsuario')){
+            this._bLoginOCerrarSesion = true;
+           this.setState({botonPerfil: true})
+        }
+    }
 
     //funcion para los los input del nav
     handleClickMenuNav = (event) => {
@@ -39,12 +46,17 @@ class App extends React.Component{
      */
     funcionMostrarLoginOCerrarSesion = () => {
         if(!this._bLoginOCerrarSesion){
-            this.setState({bLoginOCerrarSesion: true});
+            this.setState({bLoginOCerrarSesion: true, botonPerfil:true});
             this._bLoginOCerrarSesion = true;
         }
         else{
-            this.setState({bLoginOCerrarSesion: true});
-            this._bLoginOCerrarSesion = false;
+            let confirmacion = window.confirm('Seguro que quieres cerrar sesion?');
+            if(confirmacion){
+                localStorage.removeItem('primariKey');
+                localStorage.removeItem('nombreUsuario');
+                this.setState({bLoginOCerrarSesion: false, botonPerfil:false});
+                this._bLoginOCerrarSesion = false;
+            }            
         }
     }
 
@@ -96,6 +108,7 @@ class App extends React.Component{
                 funcionAparecerMenuLateral={this.funcionAparecerMenuLateral}
                 funcionAparecerDesaparecerLogin={this.funcionAparecerDesaparecerLogin}
                 funcionAparecerDesaparecerRegistro={this.funcionAparecerDesaparecerRegistro}
+                botonPerfil={this.state.botonPerfil}
                 ></Nav>
                 <Section 
                 aparecerMenu={this.state.aparecerMenu}
@@ -103,6 +116,7 @@ class App extends React.Component{
                 ventanaRegistro={this.state.ventanaRegistro}
                 funcionAparecerDesaparecerLogin={this.funcionAparecerDesaparecerLogin}
                 funcionAparecerDesaparecerRegistro={this.funcionAparecerDesaparecerRegistro}
+                funcionMostrarLoginOCerrarSesion={this.funcionMostrarLoginOCerrarSesion}
                 ></Section>
                 <Footer></Footer>
             </div>

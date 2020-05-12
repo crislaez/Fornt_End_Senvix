@@ -5,3 +5,11 @@ header{
     background-size: 100% 100vh;
     float: left;
 }
+
+header h1{
+    text-align: center;
+    color: white;
+    font-size: 170px;
+    margin-top: 1.5em;
+    text-shadow: 7px 7px 3px black;
+}

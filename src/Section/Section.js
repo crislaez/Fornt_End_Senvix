@@ -17,7 +17,7 @@ class Section extends React.Component{
                 {
                     this.props.ventanaLogin
                     ?
-                    <Login funcionAparecerDesaparecerLogin={this.props.funcionAparecerDesaparecerLogin}></Login>
+                    <Login funcionAparecerDesaparecerLogin={this.props.funcionAparecerDesaparecerLogin} funcionMostrarLoginOCerrarSesion={this.props.funcionMostrarLoginOCerrarSesion}></Login>
                     :
                     <div></div>
                 }
@@ -25,7 +25,7 @@ class Section extends React.Component{
                 {
                     this.props.ventanaRegistro
                     ?
-                    <Registrarse funcionAparecerDesaparecerRegistro={this.props.funcionAparecerDesaparecerRegistro}></Registrarse>
+                    <Registrarse funcionAparecerDesaparecerRegistro={this.props.funcionAparecerDesaparecerRegistro} funcionAparecerDesaparecerLogin={this.props.funcionAparecerDesaparecerLogin}></Registrarse>
                     :
                     <div></div>
                 }

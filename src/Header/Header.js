@@ -8,6 +8,7 @@ class Header extends React.Component{
 
         return(
             <header>
+                <h1>SenVix</h1>
             </header>
         )
     }
