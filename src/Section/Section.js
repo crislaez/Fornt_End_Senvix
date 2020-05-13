@@ -5,6 +5,8 @@ import './Section.css';
 import Aside from '../Aside/Aside'
 import Login from '../Login/Login'
 import Registrarse from '../Registrarse/Registrarse'
+import Inicio from '../Inicio/Inicio'
+import Perfil from '../Perfil/Perfil'
 
 class Section extends React.Component{
 
@@ -13,6 +15,17 @@ class Section extends React.Component{
         return(
             <section>
                 <Aside aparecerMenu={this.props.aparecerMenu}></Aside>
+                {
+                    this.props.cambioventana === 'bInicio'
+                    ?
+                    <Inicio></Inicio>
+                    :
+                    this.props.cambioventana === 'bPerfil'
+                    ?
+                    <Perfil></Perfil>
+                    :
+                    <div></div>
+                }
 
                 {
                     this.props.ventanaLogin

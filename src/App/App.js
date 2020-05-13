@@ -11,8 +11,6 @@ class App extends React.Component{
 
     _bLoginOCerrarSesion = false;
     _aparecerMenu = false;
-    _vLogin = false;
-    _vRegistro = false;
 
     constructor(props){
         super(props);
@@ -30,7 +28,7 @@ class App extends React.Component{
     componentDidMount(){
         if(localStorage.getItem('primariKey') && localStorage.getItem('nombreUsuario')){
             this._bLoginOCerrarSesion = true;
-           this.setState({botonPerfil: true})
+           this.setState({botonPerfil: true, bLoginOCerrarSesion: true})
         }
     }
 
@@ -54,7 +52,11 @@ class App extends React.Component{
             if(confirmacion){
                 localStorage.removeItem('primariKey');
                 localStorage.removeItem('nombreUsuario');
-                this.setState({bLoginOCerrarSesion: false, botonPerfil:false});
+                /**
+                 * hacemos que aparezca el boton login pasandolo a false, desaparedca el boton perfil poniendolo a false
+                 * y cambiamos el componente ventana a INICIO
+                 */
+                this.setState({bLoginOCerrarSesion: false, botonPerfil:false, cambioventana:'bInicio'});
                 this._bLoginOCerrarSesion = false;
             }            
         }
@@ -74,26 +76,13 @@ class App extends React.Component{
 
     //funcion para que apacerza el componente Login
     funcionAparecerDesaparecerLogin = () => {
-        if(!this._vLogin){
-            this.setState({ventanaLogin:true});
-            this._vLogin = true;
-        }
-        else{
-            this.setState({ventanaLogin:false});
-            this._vLogin = false;
-        }
+        this.setState({ventanaLogin: !this.state.ventanaLogin});
     }
 
     //funcion para ahcer que aparezca el componente registro
     funcionAparecerDesaparecerRegistro = () => {
-        if(!this._vRegistro){
-            this.setState({ventanaRegistro:true});
-            this._vRegistro = true;
-        }
-        else{
-            this.setState({ventanaRegistro:false});
-            this._vRegistro = false;
-        }
+
+        this.setState({ventanaRegistro: !this.state.ventanaRegistro});
     }
 
     render(){
@@ -114,6 +103,7 @@ class App extends React.Component{
                 aparecerMenu={this.state.aparecerMenu}
                 ventanaLogin={this.state.ventanaLogin}
                 ventanaRegistro={this.state.ventanaRegistro}
+                cambioventana={this.state.cambioventana}
                 funcionAparecerDesaparecerLogin={this.funcionAparecerDesaparecerLogin}
                 funcionAparecerDesaparecerRegistro={this.funcionAparecerDesaparecerRegistro}
                 funcionMostrarLoginOCerrarSesion={this.funcionMostrarLoginOCerrarSesion}

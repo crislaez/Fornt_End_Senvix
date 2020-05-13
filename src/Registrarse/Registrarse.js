@@ -67,14 +67,15 @@ class Registrarse extends React.Component{
             .then(response => {
                 console.log(response);
                 alert('registrado corrrectamente');
-                //llamaos a la funcion para qeu se cierre la ventana de registro
-                const funcionAparecerDesaparecerRegistro = this.props.funcionAparecerDesaparecerRegistro;
-                funcionAparecerDesaparecerRegistro();
-                //llamamos a la funcion para que se abra la ventana de login
-                const funcionAparecerDesaparecerLogin = this.props.funcionAparecerDesaparecerLogin;
-                funcionAparecerDesaparecerLogin();
-                
-                
+                //si no hay las 2 variables registradas ya en el localStrorage, no nos lleva a la vengana login
+                if(!localStorage.getItem('primariKey') && !localStorage.getItem('nombreUsuario')){
+                    //llamamos a la funcion para qeu se cierre la ventana de registro
+                    const funcionAparecerDesaparecerRegistro = this.props.funcionAparecerDesaparecerRegistro;
+                    funcionAparecerDesaparecerRegistro();
+                    //llamamos a la funcion para que se abra la ventana de login
+                    const funcionAparecerDesaparecerLogin = this.props.funcionAparecerDesaparecerLogin;
+                    funcionAparecerDesaparecerLogin();
+                }          
             })   
             .catch(err => {
                 console.log(err.message)
