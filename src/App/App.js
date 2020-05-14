@@ -6,6 +6,8 @@ import Header from '../Header/Header';
 import Nav from '../Nav/Nav';
 import Section from '../Section/Section';
 import Footer from '../Footer/Footer';
+//alert
+import sweet from 'sweetalert';
 
 class App extends React.Component{
 
@@ -34,7 +36,7 @@ class App extends React.Component{
 
     //funcion para los los input del nav
     handleClickMenuNav = (event) => {
-        console.log(event.target.id);
+        // console.log(event.target.id);
         this.setState({cambioventana:event.target.id});
     }
     
@@ -48,17 +50,29 @@ class App extends React.Component{
             this._bLoginOCerrarSesion = true;
         }
         else{
-            let confirmacion = window.confirm('Seguro que quieres cerrar sesion?');
-            if(confirmacion){
-                localStorage.removeItem('primariKey');
-                localStorage.removeItem('nombreUsuario');
-                /**
-                 * hacemos que aparezca el boton login pasandolo a false, desaparedca el boton perfil poniendolo a false
-                 * y cambiamos el componente ventana a INICIO
-                 */
-                this.setState({bLoginOCerrarSesion: false, botonPerfil:false, cambioventana:'bInicio'});
-                this._bLoginOCerrarSesion = false;
-            }            
+
+            sweet({
+                text: "Seguro que quieres cerrar sesion?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                    //removemos las 2 varaibles que estan guardadas en el localStorage
+                    localStorage.removeItem('primariKey');
+                    localStorage.removeItem('nombreUsuario');
+                    /**
+                     * hacemos que aparezca el boton login pasandolo a false, desaparedca el boton perfil poniendolo a false
+                     * y cambiamos el componente ventana a INICIO
+                     */
+                    this.setState({bLoginOCerrarSesion: false, botonPerfil:false, cambioventana:'bInicio'});
+                    this._bLoginOCerrarSesion = false;
+                    sweet("Cerrado sesion correctamente", {
+                    icon: "success",
+                  });
+                }
+              });
         }
     }
 
@@ -81,7 +95,6 @@ class App extends React.Component{
 
     //funcion para ahcer que aparezca el componente registro
     funcionAparecerDesaparecerRegistro = () => {
-
         this.setState({ventanaRegistro: !this.state.ventanaRegistro});
     }
 

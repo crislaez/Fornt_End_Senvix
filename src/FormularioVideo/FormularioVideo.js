@@ -1,6 +1,8 @@
 import React from 'react';
 //css
 import './FormularioVideo.css';
+//alert
+import sweet from 'sweetalert';
 
 class FormularioVideo extends React.Component{
 
@@ -17,10 +19,10 @@ class FormularioVideo extends React.Component{
         event.preventDefault();
 
         if(!this.state.video){
-            alert('Ingrese un video')
+            sweet('Oops','Ingrese un video','error')
         }
         else if(!this.state.tituloVideo){
-            alert('Ingrese uin titulo para el video')
+            sweet('Oops','Ingrese uin titulo para el video','error')
         }
         else{
 
@@ -35,13 +37,16 @@ class FormularioVideo extends React.Component{
             .then(response => {
                
                 if(response.success){
-                     //llamamos a la funcion que esta en Perfil para que se cierra este componente de formulario video
-                    alert('video subido correctamente')
+                    //llamamos a la funcion que esta en Perfil para que se cierra este componente de formulario video
+                    sweet('Ok','video subido correctamente','success')
                     const handleClick = this.props.handleClick;
                     handleClick();
+                    //llamamos a la funcion que sta en perfil para que vuelva a pedir los datos
+                    const getFetch = this.props.getFetch;
+                    getFetch('http://localhost:3001/api/video/'+localStorage.getItem('primariKey'), true);
                 }
                 else{
-                    alert('ha ocurrido un error');
+                    sweet('Oops','ha ocurrido un error','error');
                 }
                    
             })

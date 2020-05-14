@@ -3,6 +3,7 @@
     height: 750px;
     margin-top: -101px;
     position: absolute;
+    z-index: 1;
     background: rgb(0,0,0,.5);
 }
 

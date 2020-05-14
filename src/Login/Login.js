@@ -3,6 +3,8 @@ import React from 'react';
 import './Login.css'
 //encriotar clave
 import CryptoJS from 'crypto-js/md5';
+//alert
+import sweet from 'sweetalert';
 class Login extends React.Component{
 
     constructor(props){
@@ -19,10 +21,10 @@ class Login extends React.Component{
         let hash;
 
         if(!this.state.correo){
-            alert('rellene el correo correctamente')
+            sweet('Oops','rellene el correo correctamente','error')
         }
         else if(!this.state.clave){
-            alert('rellene la clave correctamente')
+            sweet('Oops','rellene la clave correctamente','error')
         }
         else
         {
@@ -31,12 +33,12 @@ class Login extends React.Component{
 
             const data = new URLSearchParams(`correo=${this.state.correo}&clave=${JSON.stringify(hash)}`)
 
-            fetch('http://localhost:3001/api/login', {method:'POST', body:data})
+            fetch(process.env.REACT_APP_DATABASE_URL+'/login', {method:'POST', body:data})
             .then(data => data.json())
             .then(response => {
 
                 if(response.data.toString()){
-                    alert('logueado correctamente');
+                    sweet('Logueado','logueado correctamente','success');
                     localStorage.setItem('primariKey',response.data[0].id_usuario);
                     localStorage.setItem('nombreUsuario',response.data[0].nombre);
                     //llamamos a la funcion que esta en app.js para qeu desaparezca el boton login y aparezca el boton cerrar sesion
@@ -47,7 +49,7 @@ class Login extends React.Component{
                     funcionAparecerDesaparecerLogin();
                 }
                 else{
-                    alert('Correo o clave incorrectos')
+                    sweet('Oops','Correo o clave incorrectos','error')
                 }
             })            
             .catch(err => {
@@ -56,7 +58,7 @@ class Login extends React.Component{
         }
         this.setState({correo: '', clave: ''})
         
-    }
+    } 
 
     render(){
 

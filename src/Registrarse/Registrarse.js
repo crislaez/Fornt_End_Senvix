@@ -3,7 +3,8 @@ import React from 'react';
 import './Registrarse.css';
 //encriptar clave
 import CryptoJS from 'crypto-js/md5';
-
+//alert
+import sweet from 'sweetalert';
 class Registrarse extends React.Component{
 
     constructor(props){
@@ -16,62 +17,64 @@ class Registrarse extends React.Component{
                 sexo:'',
                 correo:'',
                 clave:'',
-                rClave:''
+                rClave:'',
+                avatar:''
             }
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
+
         let  hash = '';
         if(!this.state.nombre){
-            alert('Rellene el nombre correctamente')
+            sweet('Oops','Rellene el nombre correctamente','error');
         }
         else if(!this.state.apellido){
-            alert('Rellene el aleppido correctamente')
+            sweet('Oops','Rellene el apellido correctamente','error');
         }
         else if(!this.state.nacimiento){
-            alert('Rellene la fecha de nacimiento correctamente')
+            sweet('Oops','Rellene la fecha de nacimiento correctamente','error');
         }
         else if(!this.state.sexo || this.state.sexo === '1'){
-            alert('Rellene el sexo correctamente')
+            sweet('Oops','Rellene el sexo correctamente','error');
         }
         else if(!this.state.correo){
-            alert('Rellene el correo correctamente')
+            sweet('Oops','Rellene el correo correctamente','error');
         }
         else if(!this.state.clave){
-            alert('Rellene la clave correctamente')
+            sweet('Oops','Rellene la clave correctamente','error');
           
         }
         else if(!this.state.rClave || this.state.rClave !== this.state.clave){
-            alert('Las contraseñas deven coincidir')
+            sweet('Oops','Las contraseñas deven coincidir','error');
+        }
+        else if(!this.state.avatar){
+            sweet('Oops','Selecciona un avatar','error');
         }
         else{
             //encriptamos la clave
             hash = CryptoJS(this.state.clave);
 
-            let usuario = 
-                {
-                    nombre: this.state.nombre,
-                    apellido: this.state.apellido,
-                    nacimiento: this.state.nacimiento,
-                    sexo: this.state.sexo,
-                    correo: this.state.correo,
-                    clave:JSON.stringify(hash)
-                };
-
-            // console.log(usuario);    
-            const data = new URLSearchParams(`nombre=${this.state.nombre}&apellido=${this.state.apellido}&nacimiento=${this.state.nacimiento}&sexo=${this.state.sexo}&correo=${this.state.correo}&clave=${JSON.stringify(hash)}`);
-
-            fetch('http://localhost:3001/api/addUser',{method:'POST', body: data})
+            let formData = new FormData();
+            formData.append('nombre', this.state.nombre);
+            formData.append('apellido', this.state.apellido);
+            formData.append('nacimiento', this.state.nacimiento);
+            formData.append('sexo', this.state.sexo);
+            formData.append('correo', this.state.correo);
+            formData.append('clave', JSON.stringify(hash));
+            formData.append('avatar', this.state.avatar);
+       
+            fetch(process.env.REACT_APP_DATABASE_URL+'/addUser',{method:'POST', body: formData})
             .then(data => data.json())
             .then(response => {
-                console.log(response);
-                alert('registrado corrrectamente');
+
+                sweet('Gracias por registrarse','registrado corrrectamente','success');
+                //llamamos a la funcion para que se cierre la ventana de registro
+                const funcionAparecerDesaparecerRegistro = this.props.funcionAparecerDesaparecerRegistro;
+                funcionAparecerDesaparecerRegistro();
+
                 //si no hay las 2 variables registradas ya en el localStrorage, no nos lleva a la vengana login
-                if(!localStorage.getItem('primariKey') && !localStorage.getItem('nombreUsuario')){
-                    //llamamos a la funcion para qeu se cierre la ventana de registro
-                    const funcionAparecerDesaparecerRegistro = this.props.funcionAparecerDesaparecerRegistro;
-                    funcionAparecerDesaparecerRegistro();
+                if(!localStorage.getItem('primariKey') && !localStorage.getItem('nombreUsuario')){                    
                     //llamamos a la funcion para que se abra la ventana de login
                     const funcionAparecerDesaparecerLogin = this.props.funcionAparecerDesaparecerLogin;
                     funcionAparecerDesaparecerLogin();
@@ -118,6 +121,8 @@ class Registrarse extends React.Component{
                         <input type='password' value={this.state.clave} onChange={(params) => {this.setState({clave:params.target.value})}} placeholder='clave'></input>
                         <br></br>
                         <input type='password' value={this.state.rClave} onChange={(params) => {this.setState({rClave:params.target.value})}} placeholder='repetir clave...'></input>
+                        <br></br>
+                        <input type='file' onChange={(params) => {this.setState({avatar:params.target.files[0]})}} placeholder='avatar...'></input>
                         <br></br>
                         <input type='submit' value='Registrarse'></input>
                     </form>
