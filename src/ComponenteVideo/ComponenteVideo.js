@@ -43,6 +43,12 @@ class ComponenteVideo extends React.Component{
           });
     }
 
+    handleClickVer = (event) => {
+        //llamamos a la funcion que esta en app.js
+        const handleClickInicioPerfil = this.props.handleClickInicioPerfil;
+        handleClickInicioPerfil(event.target.parentNode.parentNode.dataset.idvideo);
+    }
+
     render(){
 
         return(
@@ -52,10 +58,11 @@ class ComponenteVideo extends React.Component{
                 </div>
                 <div className='divComponenteVideoDerecha'>
                     <p style={{marginTop: this.props.margenParrafo}}><strong>{this.props.titulo_video}</strong></p>
+                    <input type='button' value='Ver' onClick={this.handleClickVer} ></input>
                     {
                         this.props.mostrarBotonBorrar
                         ?
-                        <input type='button' value='borrar' onClick={this.handleClick} ></input>
+                        <input type='button' value='Borrar' onClick={this.handleClick} ></input>
                         :
                         <div style={{display:'none'}}></div>
                     }

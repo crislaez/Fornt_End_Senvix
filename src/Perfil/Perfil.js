@@ -91,7 +91,7 @@ class Perfil extends React.Component{
                                 titulo_video={dato.titulo_video}
                                 mostrarBotonBorrar={true}
                                 getFetch={this.getFetch}
-                                margenParrafo={'10px'}
+                                handleClickInicioPerfil={this.props.handleClickInicioPerfil}
                                 ></ComponenteVideo>
                             )
                         })

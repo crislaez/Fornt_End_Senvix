@@ -41,7 +41,7 @@ class FormularioVideo extends React.Component{
                     sweet('Ok','video subido correctamente','success')
                     const handleClick = this.props.handleClick;
                     handleClick();
-                    //llamamos a la funcion que sta en perfil para que vuelva a pedir los datos
+                    //llamamos a la funcion que esta en perfil para que vuelva a pedir los datos
                     const getFetch = this.props.getFetch;
                     getFetch('http://localhost:3001/api/video/'+localStorage.getItem('primariKey'), true);
                 }

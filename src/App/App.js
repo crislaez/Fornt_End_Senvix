@@ -23,7 +23,8 @@ class App extends React.Component{
                 aparecerMenu: '0%',
                 ventanaLogin: false,
                 ventanaRegistro: false,
-                botonPerfil:false
+                botonPerfil:false,
+                indiceComponenteComentarios:''
             }
     }
     
@@ -38,6 +39,22 @@ class App extends React.Component{
     handleClickMenuNav = (event) => {
         // console.log(event.target.id);
         this.setState({cambioventana:event.target.id});
+    }
+
+    /**
+     * este evento cambia la ventana a componentesComentarios dependiendo si hemos pinchado en ver desde
+     * el componente INICIO o el componente PERFIL, le pasamos al estado el indice para hacer una query
+     * y nos devuelva los comentarios y los datos
+     */
+    handleClickInicioPerfil = (indiceBotonVer) => {
+        this.setState({cambioventana:'bComponeteComentarios',indiceComponenteComentarios:indiceBotonVer})
+    }
+
+    /**
+     * funcion para el componenteComentarios para volver atras al componente inicio
+     */
+    volverAlInicio = () => {
+        this.setState({cambioventana: 'bInicio'})
     }
     
     /**
@@ -120,6 +137,9 @@ class App extends React.Component{
                 funcionAparecerDesaparecerLogin={this.funcionAparecerDesaparecerLogin}
                 funcionAparecerDesaparecerRegistro={this.funcionAparecerDesaparecerRegistro}
                 funcionMostrarLoginOCerrarSesion={this.funcionMostrarLoginOCerrarSesion}
+                handleClickInicioPerfil={this.handleClickInicioPerfil}
+                indiceComponenteComentarios={this.state.indiceComponenteComentarios}
+                volverAlInicio={this.volverAlInicio}
                 ></Section>
                 <Footer></Footer>
             </div>

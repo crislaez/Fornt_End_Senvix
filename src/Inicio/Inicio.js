@@ -30,14 +30,16 @@ class Inicio extends React.Component{
         fetch(ruta, {method:'GET'})
         .then(data => data.json())
         .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             this.setState({arrayVideos:response.data});
+        })
+        .catch(err => {
+            console.log(err.message);
         })
     }
 
     render(){
 
-        console.log(this.state.arrayVideos);
         return(
             <article className='divInicio'>
                 <div className='divTituloInicio'>
@@ -59,7 +61,7 @@ class Inicio extends React.Component{
                             titulo_video={dato.titulo_video}
                             mostrarBotonBorrar={false}
                             getFetch={this.getFetch}
-                            margenParrafo={'30px'}
+                            handleClickInicioPerfil={this.props.handleClickInicioPerfil}
                             ></ComponenteVideo>
                         )
                     })

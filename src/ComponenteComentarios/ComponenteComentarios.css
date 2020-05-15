@@ -1,0 +1,90 @@
+.divComponeteComentarios{
+    width: 100%;
+    height: 650px;
+    /* background: green; */
+    float: left;
+}
+
+.divBotonAtraComponenteComentarios{
+    width: 100%;
+    height: 50px;
+    /* background: orangered; */
+    float: left;
+}
+
+.divBotonAtraComponenteComentarios input[type='button']{
+    width: 25%;
+    margin-left: 37%;
+    height: 40px;
+    margin-top: 5px;
+    border-radius: 5px;
+    background: #282c34;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.divBotonAtraComponenteComentarios input[type='button']:hover{
+    background: #575757;
+}
+
+.divCajaIzquierda{
+    width: 48%;
+    margin-left: 1%;
+    height: 700px;
+    /* background: #F7F7F7; */
+    float: left;
+}
+
+.divVideoComponeteComentarios{
+    width: 100%;
+    height: 400px;
+    margin-top: 20px;
+    background: black;
+    float: left;
+}
+
+.divVideoComponeteComentarios video{
+    width: 100%;
+    height: 400px;
+}
+
+.divTituloCOmponenteComentarios{
+    width: 100%;
+    height: 130px;
+    margin-top: 50px;
+    background: white;
+    float: left;
+}
+
+.divTituloCOmponenteComentarios h3{
+    text-align: center;
+    font-size: 30px;
+}
+
+.divTituloCOmponenteComentarios p{
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.divCajaDerecha{
+    width: 48%;
+    margin-left: 2%;
+    height: 650px;
+    background:white;
+    /* box-shadow: 0px 0px 10px black; */
+    float: left;
+}
+
+.divComentarios{
+    width: 98%;
+    height: 500px;
+    margin-top: 20px;
+    background: #F7F7F7;
+    margin-left: 1%;
+}
+
+.divCajaDerecha form{
+
+}
