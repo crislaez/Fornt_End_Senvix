@@ -1,7 +1,8 @@
 import React from 'react';
 //css
 import './ComponenteComentarios.css'
-
+//alert
+import sweet from 'sweetalert';
 class ComponenteComentarios extends React.Component{
     _isMount = false;
 
@@ -10,7 +11,9 @@ class ComponenteComentarios extends React.Component{
         this.state = 
             {
                 arrayVideo:'',
-                arrayComentarios:''
+                arrayComentarios:'',
+                comentario:'',
+                usuario:''
 
             }
     }
@@ -19,6 +22,7 @@ class ComponenteComentarios extends React.Component{
         this._isMount = true;
         if(this._isMount){
             this.getFetcComponetes(process.env.REACT_APP_DATABASE_URL+'/getVideo/'+this.props.indiceComponenteComentarios,true)
+            this.setState({usuario: localStorage.getItem('nombreUsuario')})
         }
  
     }
@@ -43,15 +47,40 @@ class ComponenteComentarios extends React.Component{
         })
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        if(!this.state.usuario){
+            sweet('Oops','Debes estar logueado','error');
+        }
+        else if(!this.state.comentario){
+            sweet('Oops','Escribe un comentario','error');
+        }
+        else{
+            const data = new URLSearchParams(`id_video=${this.props.indiceComponenteComentarios}&id_comentario=${''}&comentario=${this.state.comentario}&usuario=${this.state.usuario}`);
+
+            fetch(process.env.REACT_APP_DATABASE_URL+'/addComent',{method:'POST', body:data})
+            .then(data => data.json())
+            .then(response => {
+                sweet('Ok','Mensaje enviado','success');
+                console.log(response);
+            })
+            .catch(err => {
+                console.log(err.message);
+            })
+        }
+        
+        this.setState({comentario:''})
+   
+    }
+
     componentWillUnmount(){
         this._isMount = false;
     }
 
     render(){
-        console.log(this.state.arrayVideo)
-        // volverAlInicio
-        // divCajaIzquierda
-        // divCajaDerecha
+        // console.log(this.state.arrayVideo)
+
         return(
             <article className='divComponeteComentarios'>
             
@@ -74,7 +103,9 @@ class ComponenteComentarios extends React.Component{
                     <div className='divComentarios'>
                     </div>
 
-                    <form action='' method='' encType='multipart/form-data'>
+                    <form onSubmit={this.handleSubmit} action='' method='' encType='multipart/form-data'>
+                        <input type='text' value={this.state.comentario} onChange={(params) => {this.setState({comentario: params.target.value})}}></input>
+                        <input type='submit' value='Enviar'></input>
                     </form>
                 </div>
 

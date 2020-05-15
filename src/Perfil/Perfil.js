@@ -17,7 +17,8 @@ class Perfil extends React.Component{
                 indice:'',
                 aparecerFormulario:false,
                 arrayVideosUsuario:[],
-                foto:''
+                foto:'',
+                banner:''
             }
     }
     componentDidMount(){
@@ -41,15 +42,18 @@ class Perfil extends React.Component{
         fetch(url,{method:'GET'})
         .then(data => data.json())
         .then(response => {
+            // console.log(response.data)
             if(response.data){
                 if(bool){                
                     this.setState({arrayVideosUsuario:response.data})
                 }else{
-                    this.setState({foto:response.data[0].avatar})
+                    this.setState({foto: response.data[0].avatar, banner: response.data[0].banner})
                 } 
             }                       
         })
     }
+
+    
 
     handleClick = () => {
         this.setState({aparecerFormulario: !this.state.aparecerFormulario})
@@ -57,16 +61,19 @@ class Perfil extends React.Component{
     }
 
     render(){
-        console.log(this.state.arrayVideosUsuario);
-        console.log(this.state.foto);
+        // console.log(this.state.arrayVideosUsuario);
+        // console.log(this.state.foto);
         return(
             <article className='divPerfil'>
-                <div className='divTituloPerfil'>
+
+                <div className='divTituloPerfil' style={{ background: `url(${this.state.banner}) 0 0/100% 170px` }} >
+
                     <div className='divFotoPerfil'>
                         <img src={this.state.foto} alt={this.state.foto}></img>
                     </div>
                     <h2>Bienvenido {this.state.usuario}</h2>
                     <input type='button' value='Subir video' onClick={this.handleClick}></input>
+               
                 </div>
 
                 <div className='divContenedorPerfil'>

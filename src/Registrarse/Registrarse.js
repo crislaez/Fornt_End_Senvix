@@ -18,7 +18,8 @@ class Registrarse extends React.Component{
                 correo:'',
                 clave:'',
                 rClave:'',
-                avatar:''
+                avatar:'',
+                banner:''
             }
     }
 
@@ -51,6 +52,9 @@ class Registrarse extends React.Component{
         else if(!this.state.avatar){
             sweet('Oops','Selecciona un avatar','error');
         }
+        else if(!this.state.banner){
+            sweet('Oops','Selecciona el banner','error');
+        }
         else{
             //encriptamos la clave
             hash = CryptoJS(this.state.clave);
@@ -63,6 +67,7 @@ class Registrarse extends React.Component{
             formData.append('correo', this.state.correo);
             formData.append('clave', JSON.stringify(hash));
             formData.append('avatar', this.state.avatar);
+            formData.append('banner', this.state.banner);
        
             fetch(process.env.REACT_APP_DATABASE_URL+'/addUser',{method:'POST', body: formData})
             .then(data => data.json())
@@ -122,7 +127,9 @@ class Registrarse extends React.Component{
                         <br></br>
                         <input type='password' value={this.state.rClave} onChange={(params) => {this.setState({rClave:params.target.value})}} placeholder='repetir clave...'></input>
                         <br></br>
-                        <input type='file' onChange={(params) => {this.setState({avatar:params.target.files[0]})}} placeholder='avatar...'></input>
+                        <input type='file' onChange={(params) => {this.setState({avatar:params.target.files[0]})}}></input>
+                        <br></br>
+                        <input type='file' onChange={(params) => {this.setState({banner:params.target.files[0]})}}></input>
                         <br></br>
                         <input type='submit' value='Registrarse'></input>
                     </form>

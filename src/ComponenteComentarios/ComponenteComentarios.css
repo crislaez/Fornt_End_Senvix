@@ -79,12 +79,40 @@
 
 .divComentarios{
     width: 98%;
-    height: 500px;
+    height: 550px;
     margin-top: 20px;
     background: #F7F7F7;
+    overflow-y: scroll;
     margin-left: 1%;
 }
 
 .divCajaDerecha form{
+    width: 98%;
+    height: 80px;
+    margin-left: 1%;
+    /* background: blue; */
+}
 
+.divCajaDerecha form input[type='text']{
+    width: 70%;
+    height: 50px;
+    margin-top: 15px;
+    margin-left: 5%;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+
+.divCajaDerecha form input[type='submit']{
+    width: 20%;
+    height: 50px;
+    margin-left: 2.5%;
+    border-radius: 5px;
+    border: none;
+    background: #282c34;
+    color: white;
+    cursor: pointer;
+}
+
+.divCajaDerecha form input[type='submit']:hover{
+    background: #575757;
 }
