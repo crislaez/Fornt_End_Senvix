@@ -1,6 +1,6 @@
 .divComponenteVideo{
     width: 30%;
-    height: 300px;
+    height: 400px;
     margin-left: 3%;
     margin-top: 20px;
     /* border: 1px solid gray; */
@@ -13,19 +13,19 @@
 
 .divCompoenteVideoIzquierda{
     width: 100%;
-    height: 200px;
+    height: 250px;
     float: left;
 }
 
 .divCompoenteVideoIzquierda video{
     width: 100%;
-    height: 200px;
+    height: 250px;
     background: black;
 }
 
 .divComponenteVideoDerecha{
     width: 100%;
-    height: 100px;
+    height: 150px;
     /* background: green; */
     float: left;
 }
@@ -44,7 +44,7 @@
     color: white;
     border: none;
     margin-left: 15%;
-    margin-top: 5px;
+    margin-top: 15px;
     cursor: pointer;
 }
 

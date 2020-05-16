@@ -24,7 +24,8 @@ class App extends React.Component{
                 ventanaLogin: false,
                 ventanaRegistro: false,
                 botonPerfil:false,
-                indiceComponenteComentarios:''
+                indiceComponenteComentarios:'',
+                usuario:[]
             }
     }
     
@@ -37,7 +38,6 @@ class App extends React.Component{
 
     //funcion para los los input del nav
     handleClickMenuNav = (event) => {
-        // console.log(event.target.id);
         this.setState({cambioventana:event.target.id});
     }
 
@@ -48,6 +48,15 @@ class App extends React.Component{
      */
     handleClickInicioPerfil = (indiceBotonVer) => {
         this.setState({cambioventana:'bComponeteComentarios',indiceComponenteComentarios:indiceBotonVer})
+    }
+
+    /**
+     * esta funcion recibe el nombre desde el aside buscador, cambia
+     * el estado para que se cargue el componentePerfilbuscador y le pasa el nombre
+     * del usuario a buscar para qeu se haga la query
+     */
+    handleClickAsideBuscadorPerfil = (usuario) => {
+        this.setState({cambioventana:'bComponenteBuscadorPerfil', usuario:usuario});
     }
 
     /**
@@ -140,6 +149,9 @@ class App extends React.Component{
                 handleClickInicioPerfil={this.handleClickInicioPerfil}
                 indiceComponenteComentarios={this.state.indiceComponenteComentarios}
                 volverAlInicio={this.volverAlInicio}
+                funcionAparecerMenuLateral={this.funcionAparecerMenuLateral}
+                handleClickAsideBuscadorPerfil={this.handleClickAsideBuscadorPerfil}
+                usuario={this.state.usuario}
                 ></Section>
                 <Footer></Footer>
             </div>

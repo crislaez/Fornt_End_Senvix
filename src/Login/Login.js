@@ -47,6 +47,8 @@ class Login extends React.Component{
                     //llamamos a la funcion que esta en app.js para qeu se cierre el componente login
                     const funcionAparecerDesaparecerLogin = this.props.funcionAparecerDesaparecerLogin;
                     funcionAparecerDesaparecerLogin();
+                    //recargamos la apgina
+                    // window.location.reload();
                 }
                 else{
                     sweet('Oops','Correo o clave incorrectos','error')

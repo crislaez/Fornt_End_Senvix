@@ -77,11 +77,12 @@
     float: left;
 }
 
-.divComentarios{
+.divCajaComentarios{
     width: 98%;
     height: 550px;
     margin-top: 20px;
-    background: #F7F7F7;
+    /* background: #F7F7F7; */
+    /* border: 1px solid gray; */
     overflow-y: scroll;
     margin-left: 1%;
 }

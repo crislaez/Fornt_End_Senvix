@@ -39,7 +39,7 @@ class Inicio extends React.Component{
     }
 
     render(){
-
+        // console.log(this.state.arrayVideos)
         return(
             <article className='divInicio'>
                 <div className='divTituloInicio'>
@@ -49,7 +49,7 @@ class Inicio extends React.Component{
                 <div className='divContenidoInicio'>
 
                 {
-                    this.state.arrayVideos
+                    this._isMount && this.state.arrayVideos.toString()
                     ?
                     this.state.arrayVideos.map( (dato, key) => {
                         return(
@@ -59,6 +59,7 @@ class Inicio extends React.Component{
                             id_video={dato.id_video} 
                             video={dato.video} 
                             titulo_video={dato.titulo_video}
+                            nombre={dato.nombre}
                             mostrarBotonBorrar={false}
                             getFetch={this.getFetch}
                             handleClickInicioPerfil={this.props.handleClickInicioPerfil}

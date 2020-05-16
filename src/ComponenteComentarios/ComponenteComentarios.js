@@ -3,6 +3,8 @@ import React from 'react';
 import './ComponenteComentarios.css'
 //alert
 import sweet from 'sweetalert';
+//Componente
+import Comentario from '../Comentario/Comentario'
 class ComponenteComentarios extends React.Component{
     _isMount = false;
 
@@ -13,7 +15,7 @@ class ComponenteComentarios extends React.Component{
                 arrayVideo:'',
                 arrayComentarios:'',
                 comentario:'',
-                usuario:''
+                usuario:'',
 
             }
     }
@@ -21,7 +23,8 @@ class ComponenteComentarios extends React.Component{
     componentDidMount(){
         this._isMount = true;
         if(this._isMount){
-            this.getFetcComponetes(process.env.REACT_APP_DATABASE_URL+'/getVideo/'+this.props.indiceComponenteComentarios,true)
+            this.getFetcComponetes(process.env.REACT_APP_DATABASE_URL+'/getVideo/'+this.props.indiceComponenteComentarios,true);
+            this.getFetcComponetes(process.env.REACT_APP_DATABASE_URL+'/getComent/'+this.props.indiceComponenteComentarios,false);
             this.setState({usuario: localStorage.getItem('nombreUsuario')})
         }
  
@@ -32,13 +35,15 @@ class ComponenteComentarios extends React.Component{
         fetch(url, {method:'GET'})
         .then(data => data.json())
         .then(response => {
-            console.log(response.data[0]);
-            console.log(JSON.stringify(response.data[0]))
+            // console.log(response.data[0]);
+            // console.log(JSON.stringify(response.data[0]))
             if(response.data){
                 if(bool){
+                    console.log(response.data[0]);
                     this.setState({arrayVideo:response.data[0]})
                 }else{
-    
+                    console.log(response.data);
+                    this.setState({arrayComentarios:response.data})
                 }
             }            
         })
@@ -63,7 +68,9 @@ class ComponenteComentarios extends React.Component{
             .then(data => data.json())
             .then(response => {
                 sweet('Ok','Mensaje enviado','success');
-                console.log(response);
+                // console.log(response);
+                //volvemos a llamar a esta fucion fetch para cargar los comentarios
+                this.getFetcComponetes(process.env.REACT_APP_DATABASE_URL+'/getComent/'+this.props.indiceComponenteComentarios,false);
             })
             .catch(err => {
                 console.log(err.message);
@@ -100,11 +107,22 @@ class ComponenteComentarios extends React.Component{
                 </div>
 
                 <div className='divCajaDerecha'>
-                    <div className='divComentarios'>
+                    <div className='divCajaComentarios'>
+                    {
+                        this._isMount && this.state.arrayComentarios.toString()
+                        ?
+                        this.state.arrayComentarios.map( (dato, key) => {
+                            return(
+                                <Comentario key={key} id_comentario={dato.id_comentario} usuario={dato.usuario} comentario={dato.comentario}> </Comentario>
+                            )
+                        })
+                        :
+                        <div>No hay comentarios</div>
+                    }
                     </div>
 
                     <form onSubmit={this.handleSubmit} action='' method='' encType='multipart/form-data'>
-                        <input type='text' value={this.state.comentario} onChange={(params) => {this.setState({comentario: params.target.value})}}></input>
+                        <input type='text' value={this.state.comentario} onChange={(params) => {this.setState({comentario: params.target.value})}} placeholder='deja tu comentario...'></input>
                         <input type='submit' value='Enviar'></input>
                     </form>
                 </div>

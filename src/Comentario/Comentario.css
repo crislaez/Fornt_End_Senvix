@@ -1,0 +1,18 @@
+.divComentario{
+    width: 94%;
+    margin-left: 1.5%;
+    min-height: 30px;   
+    margin-top: 10px; 
+    border-radius: 5px;
+    background: #F3F3F3 ;
+    padding: 10px;
+    float: left;
+}
+
+.divComentario p{
+    color: blue;
+}
+
+.divComentario p em{
+    color: black;
+}

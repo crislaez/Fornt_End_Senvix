@@ -8,3 +8,37 @@ aside{
     box-shadow: 7px 0px 3px grey;
     background: #282c34;
 }
+
+aside form{
+    width: 98%;
+    height: 50px;
+    margin-left: 1%;
+    background: white;
+    margin-top: 10px;
+}
+
+aside form input[type='text']{
+    width: 70%;
+    height: 40px;
+    margin-top: 5px;
+    margin-left: 2.5%;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+aside form input[type='submit']{
+    width: 20%;
+    height: 40px;
+    margin-top: 5px;
+    margin-left: 2.5%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #61dafb;
+    color: white;
+    text-shadow: 1px 1px 3px black;
+}
+
+aside form input[type='submit']:hover{
+    background: #82B9D0;
+}

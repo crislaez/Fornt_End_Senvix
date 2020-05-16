@@ -50,7 +50,7 @@ class ComponenteVideo extends React.Component{
     }
 
     render(){
-
+        // console.log(this.props.nombre);
         return(
             <div className='divComponenteVideo' data-idvideo={this.props.id_video}>
                 <div className='divCompoenteVideoIzquierda'>
@@ -58,6 +58,7 @@ class ComponenteVideo extends React.Component{
                 </div>
                 <div className='divComponenteVideoDerecha'>
                     <p style={{marginTop: this.props.margenParrafo}}><strong>{this.props.titulo_video}</strong></p>
+                    <p><em>{this.props.nombre}</em></p>
                     <input type='button' value='Ver' onClick={this.handleClickVer} ></input>
                     {
                         this.props.mostrarBotonBorrar

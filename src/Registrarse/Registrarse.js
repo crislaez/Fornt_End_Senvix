@@ -127,9 +127,9 @@ class Registrarse extends React.Component{
                         <br></br>
                         <input type='password' value={this.state.rClave} onChange={(params) => {this.setState({rClave:params.target.value})}} placeholder='repetir clave...'></input>
                         <br></br>
-                        <input type='file' onChange={(params) => {this.setState({avatar:params.target.files[0]})}}></input>
+                        <label>Perfil:&nbsp; &nbsp;</label><input type='file' onChange={(params) => {this.setState({avatar:params.target.files[0]})}}></input>
                         <br></br>
-                        <input type='file' onChange={(params) => {this.setState({banner:params.target.files[0]})}}></input>
+                        <label>Banner:</label><input type='file' onChange={(params) => {this.setState({banner:params.target.files[0]})}}></input>
                         <br></br>
                         <input type='submit' value='Registrarse'></input>
                     </form>

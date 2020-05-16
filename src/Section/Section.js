@@ -7,7 +7,8 @@ import Login from '../Login/Login'
 import Registrarse from '../Registrarse/Registrarse'
 import Inicio from '../Inicio/Inicio'
 import Perfil from '../Perfil/Perfil'
-import ComponenteComentarios from '../ComponenteComentarios/ComponenteComentarios'
+import ComponenteComentarios from '../ComponenteComentarios/ComponenteComentarios';
+import ComponenteBuscadorPerfil from '../ComponenteBuscadorPerfil/ComponenteBuscadorPerfil';
 
 class Section extends React.Component{
 
@@ -15,7 +16,7 @@ class Section extends React.Component{
         // indiceComponenteComentarios
         return(
             <section>
-                <Aside aparecerMenu={this.props.aparecerMenu}></Aside>
+                <Aside aparecerMenu={this.props.aparecerMenu} funcionAparecerMenuLateral={this.props.funcionAparecerMenuLateral} handleClickAsideBuscadorPerfil={this.props.handleClickAsideBuscadorPerfil}></Aside>
                 {
                     this.props.cambioventana === 'bInicio'
                     ?
@@ -28,6 +29,10 @@ class Section extends React.Component{
                     this.props.cambioventana === 'bComponeteComentarios'
                     ?
                     <ComponenteComentarios indiceComponenteComentarios={this.props.indiceComponenteComentarios} volverAlInicio={this.props.volverAlInicio}></ComponenteComentarios>
+                    :
+                    this.props.cambioventana === 'bComponenteBuscadorPerfil'
+                    ?
+                    <ComponenteBuscadorPerfil usuario={this.props.usuario}></ComponenteBuscadorPerfil>
                     :
                     <div></div>
                 }

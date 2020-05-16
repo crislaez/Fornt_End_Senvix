@@ -61,7 +61,8 @@ class Perfil extends React.Component{
     }
 
     render(){
-        // console.log(this.state.arrayVideosUsuario);
+        // console.log(this.state.arrayVideosUsuario)
+        // console.log(this.state.arrayVideosUsuario.toString());
         // console.log(this.state.foto);
         return(
             <article className='divPerfil'>
@@ -86,7 +87,7 @@ class Perfil extends React.Component{
                     }
 
                     {
-                        this._isMount && this.state.arrayVideosUsuario
+                        this._isMount && this.state.arrayVideosUsuario.toString()
                         ?
                         this.state.arrayVideosUsuario.map( (dato, key) => {
                             return(
@@ -97,13 +98,16 @@ class Perfil extends React.Component{
                                 video={dato.video} 
                                 titulo_video={dato.titulo_video}
                                 mostrarBotonBorrar={true}
+                                nombre={dato.nombre}
                                 getFetch={this.getFetch}
                                 handleClickInicioPerfil={this.props.handleClickInicioPerfil}
                                 ></ComponenteVideo>
                             )
                         })
                         :
-                        <div></div>
+                        <div className='divNohayVideos'>
+                            <h3>Aun no has subido ningun video, animate ;)</h3>
+                        </div>
                     }
 
                 </div>

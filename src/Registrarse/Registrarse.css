@@ -70,13 +70,27 @@
     margin-top: 20px;
 }
 
+.contenedorRegistrarse form label{
+    margin-left: 5%;
+    margin-right: -20px;
+}
+
+.contenedorRegistrarse form input[type='file']{
+    width: 80%;
+    height: 40px;
+    /* margin-left: 5%; */
+    border: none;
+    border-bottom: 1px solid gray;
+    margin-top: 20px; 
+}
+
 .contenedorRegistrarse form input[type='submit']{
     width: 70%;
     margin-left: 15%;
     height: 50px;
     border-radius: 5px;
     color: white;
-    margin-top: 30px;
+    margin-top: 25px;
     background: #282c34;
     cursor: pointer;
     border: none;
