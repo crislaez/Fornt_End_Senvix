@@ -3,9 +3,13 @@
 
 Senvix es una red social par subir videos
 
-![alt text](https://github.com/crislaez/Fornt_End_Senvix/src/img/foto_proyecto.PNG)
+<img width="40%" height="300" src="https://github.com/crislaez/Fornt_End_Senvix/blob/master/src/img/foto_proyecto.PNG" />
 
-![alt text](https://github.com/crislaez/Fornt_End_Senvix/src/img/foto_proyecto_2.PNG)
+<img width="40%" height="300" src="https://github.com/crislaez/Fornt_End_Senvix/blob/master/src/img/foto_proyecto_2.PNG" />
+
+<img width="40%" height="300" src="https://github.com/crislaez/Fornt_End_Senvix/blob/master/src/img/foto_proyecto_3.PNG" />
+
+<img width="40%" height="300" src="https://github.com/crislaez/Fornt_End_Senvix/blob/master/src/img/foto_proyecto_4.PNG" />
 
 ### Que hace el proyecto
 
@@ -15,6 +19,6 @@ Una red social donde se peuden subir videos, comentarlos, ver los perfiles de lo
  
 Escribiendome a mi correo crislaez30@gmail.com
 
-### QUien mantiene y construye el proyecto
+### Quien mantiene y construye el proyecto
 
 Yo mismo, y con muchisima ilusion

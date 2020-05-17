@@ -55,13 +55,13 @@ class Inicio extends React.Component{
                         return(
                             <ComponenteVideo 
                             key={key} 
-                            id_usuario={dato.id_usuario} 
+                            // id_usuario={dato.id_usuario} 
                             id_video={dato.id_video} 
                             video={dato.video} 
                             titulo_video={dato.titulo_video}
                             nombre={dato.nombre}
                             mostrarBotonBorrar={false}
-                            getFetch={this.getFetch}
+                            // getFetch={this.getFetch}
                             handleClickInicioPerfil={this.props.handleClickInicioPerfil}
                             ></ComponenteVideo>
                         )

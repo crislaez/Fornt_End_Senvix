@@ -32,7 +32,7 @@ class Section extends React.Component{
                     :
                     this.props.cambioventana === 'bComponenteBuscadorPerfil'
                     ?
-                    <ComponenteBuscadorPerfil usuario={this.props.usuario}></ComponenteBuscadorPerfil>
+                    <ComponenteBuscadorPerfil usuario={this.props.usuario} handleClickInicioPerfil={this.props.handleClickInicioPerfil}></ComponenteBuscadorPerfil>
                     :
                     <div></div>
                 }
