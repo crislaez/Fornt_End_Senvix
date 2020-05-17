@@ -3,9 +3,9 @@
 
 Senvix es una red social par subir videos
 
-<img src="https://github.com/crislaez/Fornt_End_Senvix/src/img/foto_proyecto.PNG" />
+<img src="https://github.com/crislaez/Fornt_End_Senvix/master/src/img/foto_proyecto.PNG" />
 
-![img](https://github.com/crislaez/Fornt_End_Senvix/img/foto_proyecto_2.PNG)
+![img](https://github.com/crislaez/Fornt_End_Senvix/master/src/img/foto_proyecto_2.PNG)
 
 ### Que hace el proyecto
 
