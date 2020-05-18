@@ -14,8 +14,8 @@
 .divFotoBuscador{
     width: 10%;
     height: 130px;
-    margin-top: 25px;
-    margin-left: 30%;
+    margin-top: 15px;
+    margin-left: 25%;
     border: 2px solid grey;
     overflow: hidden;
     border-radius: 50%;
@@ -35,6 +35,32 @@
     text-shadow: 3px 3px 3px grey;
     letter-spacing: 10px;
     float: left;
+}
+
+.divBotonesBuscador{
+    width: 30%;
+    height: 100px;
+    margin-top: 40px;
+    /* background: gold; */
+    margin-left: 1%;
+    float: left;
+}
+
+.divBotonesBuscador input{
+    width: 35%;
+    height: 50px;
+    border-radius: 5px;
+    margin-top: 25px;
+    border: none;
+    margin-left: 2%;
+    background: #61dafb;
+    color: white;
+    text-shadow: 1px 1px 3px gray;
+    cursor: pointer;
+}
+
+.divBotonesBuscador input:hover{
+    background: #82B9D0;
 }
 
 .divContenedorBuscador{

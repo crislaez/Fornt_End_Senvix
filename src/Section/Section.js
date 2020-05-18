@@ -40,7 +40,7 @@ class Section extends React.Component{
                 {
                     this.props.ventanaLogin
                     ?
-                    <Login funcionAparecerDesaparecerLogin={this.props.funcionAparecerDesaparecerLogin} funcionMostrarLoginOCerrarSesion={this.props.funcionMostrarLoginOCerrarSesion}></Login>
+                    <Login funcionAparecerDesaparecerLogin={this.props.funcionAparecerDesaparecerLogin} funcionMostrarLoginOCerrarSesion={this.props.funcionMostrarLoginOCerrarSesion} volverAlInicio={this.props.volverAlInicio}></Login>
                     :
                     <div></div>
                 }
