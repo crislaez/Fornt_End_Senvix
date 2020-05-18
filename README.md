@@ -1,7 +1,7 @@
 
 ## (front-end) SENVIX
 
-Senvix es una red social de subir videos
+Senvix es una red social de subir videos (React)
 
 <img width="40%" height="300" src="https://github.com/crislaez/Fornt_End_Senvix/blob/master/src/img/foto_proyecto.PNG" />
 <hr>
