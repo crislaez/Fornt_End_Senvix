@@ -1,6 +1,6 @@
 .divInicio{
     width: 100%;
-    height: 700px;
+    height: 900px;
     /* background: green; */
     float: left;
 }
@@ -23,7 +23,7 @@
 
 .divContenidoInicio{
     width: 100%;
-    height: 649px;
+    height: 849px;
     overflow-y: scroll;
     /* background: grey; */
     float: left;

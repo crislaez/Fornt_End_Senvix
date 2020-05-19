@@ -118,7 +118,7 @@ class ComponenteBuscadorPerfil extends React.Component{
 
         return(
             <article className='articleBuscador'>
-                <div className='divBannerBuscador' style={{ background: `url(${this.state.banner}) 0 0/100% 200px` }}>
+                <div className='divBannerBuscador' style={{ background: `url(${this.state.banner}) 0 0/100% 270px` }}>
                     <div className='divFotoBuscador'>
                         <img src={this.state.avatar} alt={this.state.avatar}></img>                        
                     </div>

@@ -25,10 +25,12 @@ class Perfil extends React.Component{
         this._isMount = true;
         if(localStorage.getItem('nombreUsuario') && localStorage.getItem('primariKey')){
             this.setState({usuario: localStorage.getItem('nombreUsuario'), indice: localStorage.getItem('primariKey')});
-            //llamamos a la funcion fetch que esta abajo
-            this.getFetch(process.env.REACT_APP_DATABASE_URL+'/video/'+localStorage.getItem('primariKey'), true);
-            this.getFetch(process.env.REACT_APP_DATABASE_URL+'/user/'+localStorage.getItem('primariKey'), false)
-       
+            //llamamos a la funcion fetch que esta abajo para conmseguir todos los videos del usuario registrado
+            this.getFetch(process.env.REACT_APP_DATABASE_URL+'/video/'+localStorage.getItem('primariKey'), 1);
+            //llamamos a la funcion fetch que esta abajo para conmseguir los datos del usuario registrado
+            this.getFetch(process.env.REACT_APP_DATABASE_URL+'/user/'+localStorage.getItem('primariKey'), 2);
+            //llamamos a la funcion fetch que esta abajo para conseguir todos los seguidores
+            this.getFetch(process.env.REACT_APP_DATABASE_URL+'/getFolowers/'+localStorage.getItem('primariKey'), 3);       
         }
     }
 
@@ -44,11 +46,15 @@ class Perfil extends React.Component{
         .then(response => {
             // console.log(response.data)
             if(response.data){
-                if(bool){                
+                if(bool === 1){                
                     this.setState({arrayVideosUsuario:response.data})
-                }else{
+                }
+                else if(bool === 2){
                     this.setState({foto: response.data[0].avatar, banner: response.data[0].banner})
-                } 
+                }
+                else{
+
+                }
             }                       
         })
     }
@@ -61,13 +67,12 @@ class Perfil extends React.Component{
     }
 
     render(){
-        // console.log(this.state.arrayVideosUsuario)
-        // console.log(this.state.arrayVideosUsuario.toString());
-        // console.log(this.state.foto);
+        console.log(this.state.arrayVideosUsuario)
+        console.log(this.state.foto);
         return(
             <article className='divPerfil'>
 
-                <div className='divTituloPerfil' style={{ background: `url(${this.state.banner}) 0 0/100% 170px` }} >
+                <div className='divTituloPerfil' style={{ background: `url(${this.state.banner}) 0 0/100% 270px` }} >
 
                     <div className='divFotoPerfil'>
                         <img src={this.state.foto} alt={this.state.foto}></img>
