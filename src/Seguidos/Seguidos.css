@@ -1,0 +1,19 @@
+.divSeguidos{
+    width: 26.5%;
+    height: 0px;
+    margin-left: 73.5%;
+    margin-top: 150px;
+    background: white;
+    transition: all 300ms;
+    overflow-y: scroll;
+    position: absolute;
+}
+
+.divSeguidos input{
+    width: 5%;
+    height: 20px;
+    margin-top: 5px;
+    border-radius: 50px;
+    margin-right: 1%;
+    float: right;
+}

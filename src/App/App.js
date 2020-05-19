@@ -25,7 +25,7 @@ class App extends React.Component{
                 ventanaRegistro: false,
                 botonPerfil:false,
                 indiceComponenteComentarios:'',
-                usuario:[]
+                usuario:[],
             }
     }
     

@@ -3,8 +3,8 @@ import React from 'react';
 import './Perfil.css';
 //componente
 import FormularioVideo from '../FormularioVideo/FormularioVideo';
-
 import ComponenteVideo from '../ComponenteVideo/ComponenteVideo';
+import Seguidos from '../Seguidos/Seguidos';
 class Perfil extends React.Component{
 
     _isMount = false;
@@ -16,11 +16,14 @@ class Perfil extends React.Component{
                 usuario:'',
                 indice:'',
                 aparecerFormulario:false,
+                aparecerSeguidos: '0px',
                 arrayVideosUsuario:[],
                 foto:'',
-                banner:''
+                banner:'',
+                arraySeguidos:[]
             }
     }
+
     componentDidMount(){
         this._isMount = true;
         if(localStorage.getItem('nombreUsuario') && localStorage.getItem('primariKey')){
@@ -33,7 +36,6 @@ class Perfil extends React.Component{
             this.getFetch(process.env.REACT_APP_DATABASE_URL+'/getFolowers/'+localStorage.getItem('primariKey'), 3);       
         }
     }
-
 
     componentWillUnmount(){
         this._isMount = false;
@@ -53,22 +55,31 @@ class Perfil extends React.Component{
                     this.setState({foto: response.data[0].avatar, banner: response.data[0].banner})
                 }
                 else{
-
+                    this.setState({arraySeguidos:response.data});                 
                 }
             }                       
         })
-    }
-
-    
+    };    
 
     handleClick = () => {
         this.setState({aparecerFormulario: !this.state.aparecerFormulario})
         console.log(this.state.aparecerFormulario)        
     }
 
+    //funcion que habrira el desplegable de los seguidores
+    handleClicSeguido = () => {
+        this.setState({aparecerSeguidos:'120px'});
+    }
+
+    //le pasamos esta funcion al componente seguidos para que se cierra
+    cerrarSeguidos = () => {
+        this.setState({aparecerSeguidos:'0px'});
+    }
+
     render(){
-        console.log(this.state.arrayVideosUsuario)
-        console.log(this.state.foto);
+        // console.log(this.state.arrayVideosUsuario)
+        // console.log(this.state.foto);
+        // console.log(this.state.arraySeguidos)
         return(
             <article className='divPerfil'>
 
@@ -77,9 +88,11 @@ class Perfil extends React.Component{
                     <div className='divFotoPerfil'>
                         <img src={this.state.foto} alt={this.state.foto}></img>
                     </div>
-                    <h2>Bienvenido {this.state.usuario}</h2>
+                    <h2>Bienvenido {this.state.usuario}</h2>                
                     <input type='button' value='Subir video' onClick={this.handleClick}></input>
-               
+                    <input type='button' value='Ver a quien sigo' onClick={this.handleClicSeguido}></input>
+                    <Seguidos aparecerSeguidos={this.state.aparecerSeguidos} cerrarSeguidos={this.cerrarSeguidos} arraySeguidos={this.state.arraySeguidos}></Seguidos>
+                        
                 </div>
 
                 <div className='divContenedorPerfil'>
@@ -89,7 +102,7 @@ class Perfil extends React.Component{
                         <div></div>
                         :
                         <FormularioVideo handleClick={this.handleClick} getFetch={this.getFetch}></FormularioVideo>
-                    }
+                    }                   
 
                     {
                         this._isMount && this.state.arrayVideosUsuario.toString()

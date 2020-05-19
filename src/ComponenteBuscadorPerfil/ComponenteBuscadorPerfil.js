@@ -48,10 +48,10 @@ class ComponenteBuscadorPerfil extends React.Component{
         .then(response => {
             if(response.data.toString()){
                 console.log('Siguiendo');
-                this.setState({bSeguir:true, bDejarSeguir:false, colorBseguir:'#C8D0D1', colorBDejarSeguir:'#61dafb' });          
+                this.setState({bSeguir:true, bDejarSeguir:false, colorBseguir:'#282c34', colorBDejarSeguir:'#61dafb' });          
             }else{
                 console.log('No siguiendo');
-                this.setState({bSeguir:false, bDejarSeguir:true, colorBseguir:'#61dafb', colorBDejarSeguir:'#C8D0D1'});               
+                this.setState({bSeguir:false, bDejarSeguir:true, colorBseguir:'#61dafb', colorBDejarSeguir:'#282c34'});               
             }
         })
         .catch(err => console.log(err.message))
@@ -106,7 +106,6 @@ class ComponenteBuscadorPerfil extends React.Component{
             } 
         }else{
             sweet('Oops','Debes estar logueado','error');
-            // sweet('Gracias por registrarse','registrado corrrectamente','success');
         }
     }
 

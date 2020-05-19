@@ -13,7 +13,7 @@ import ComponenteBuscadorPerfil from '../ComponenteBuscadorPerfil/ComponenteBusc
 class Section extends React.Component{
 
     render(){
-        // indiceComponenteComentarios
+        // usuariosSeguidos
         return(
             <section>
                 <Aside aparecerMenu={this.props.aparecerMenu} funcionAparecerMenuLateral={this.props.funcionAparecerMenuLateral} handleClickAsideBuscadorPerfil={this.props.handleClickAsideBuscadorPerfil}></Aside>
