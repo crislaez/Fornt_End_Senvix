@@ -56,6 +56,7 @@ class App extends React.Component{
      * del usuario a buscar para qeu se haga la query
      */
     handleClickAsideBuscadorPerfil = (usuario) => {
+        console.log(usuario)
         this.setState({cambioventana:'bComponenteBuscadorPerfil', usuario:usuario});
     }
 

@@ -68,12 +68,12 @@ class Perfil extends React.Component{
 
     //funcion que habrira el desplegable de los seguidores
     handleClicSeguido = () => {
-        this.setState({aparecerSeguidos:'120px'});
-    }
-
-    //le pasamos esta funcion al componente seguidos para que se cierra
-    cerrarSeguidos = () => {
-        this.setState({aparecerSeguidos:'0px'});
+        if(this.state.aparecerSeguidos === '220px'){
+            this.setState({aparecerSeguidos:'0%'});
+        }else{
+            this.setState({aparecerSeguidos:'220px'});           
+        }
+        
     }
 
     render(){
@@ -91,7 +91,7 @@ class Perfil extends React.Component{
                     <h2>Bienvenido {this.state.usuario}</h2>                
                     <input type='button' value='Subir video' onClick={this.handleClick}></input>
                     <input type='button' value='Ver a quien sigo' onClick={this.handleClicSeguido}></input>
-                    <Seguidos aparecerSeguidos={this.state.aparecerSeguidos} cerrarSeguidos={this.cerrarSeguidos} arraySeguidos={this.state.arraySeguidos}></Seguidos>
+                    <Seguidos aparecerSeguidos={this.state.aparecerSeguidos} handleClicSeguido={this.handleClicSeguido} arraySeguidos={this.state.arraySeguidos} handleClickAsideBuscadorPerfil={this.props.handleClickAsideBuscadorPerfil} getFetch={this.getFetch}></Seguidos>
                         
                 </div>
 
