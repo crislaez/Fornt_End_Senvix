@@ -9,7 +9,7 @@ import Inicio from '../Inicio/Inicio'
 import Perfil from '../Perfil/Perfil'
 import ComponenteComentarios from '../ComponenteComentarios/ComponenteComentarios';
 import ComponenteBuscadorPerfil from '../ComponenteBuscadorPerfil/ComponenteBuscadorPerfil';
-
+import Chat from '../Chat/Chat';
 class Section extends React.Component{
 
     render(){
@@ -32,7 +32,11 @@ class Section extends React.Component{
                     :
                     this.props.cambioventana === 'bComponenteBuscadorPerfil'
                     ?
-                    <ComponenteBuscadorPerfil usuario={this.props.usuario} handleClickInicioPerfil={this.props.handleClickInicioPerfil}></ComponenteBuscadorPerfil>
+                    <ComponenteBuscadorPerfil usuario={this.props.usuario} handleClickInicioPerfil={this.props.handleClickInicioPerfil} funcionChat={this.props.funcionChat}></ComponenteBuscadorPerfil>
+                    :
+                    this.props.cambioventana === 'bChat'
+                    ?
+                    <Chat usuarioParaChat={this.props.usuarioParaChat}></Chat>
                     :
                     <div></div>
                 }

@@ -21,7 +21,8 @@ class ComponenteBuscadorPerfil extends React.Component{
                 bSeguir:'',
                 bDejarSeguir:'',
                 colorBseguir:'',
-                colorBDejarSeguir:''
+                colorBDejarSeguir:'',
+                verBotonMensaje:false
             };
 
     }
@@ -48,10 +49,10 @@ class ComponenteBuscadorPerfil extends React.Component{
         .then(response => {
             if(response.data.toString()){
                 console.log('Siguiendo');
-                this.setState({bSeguir:true, bDejarSeguir:false, colorBseguir:'#282c34', colorBDejarSeguir:'#61dafb' });          
+                this.setState({bSeguir:true, bDejarSeguir:false, colorBseguir:'#282c34', colorBDejarSeguir:'#61dafb', verBotonMensaje:true });          
             }else{
                 console.log('No siguiendo');
-                this.setState({bSeguir:false, bDejarSeguir:true, colorBseguir:'#61dafb', colorBDejarSeguir:'#282c34'});               
+                this.setState({bSeguir:false, bDejarSeguir:true, colorBseguir:'#61dafb', colorBDejarSeguir:'#282c34',verBotonMensaje:false});               
             }
         })
         .catch(err => console.log(err.message))
@@ -108,6 +109,17 @@ class ComponenteBuscadorPerfil extends React.Component{
             sweet('Oops','Debes estar logueado','error');
         }
     }
+    
+    //llamamos a la funcion que esta en app funcionChat
+    handleCLickChat = () => {
+        let usuario = 
+            {
+                nombre:this.props.usuario[0].nombre,
+                indice:this.props.usuario[0].id_usuario
+            }
+        const funcionChat = this.props.funcionChat;
+        funcionChat(usuario);
+    }
 
     render(){
         // console.log(this.state.arrayUsuarioBuscado);
@@ -128,6 +140,14 @@ class ComponenteBuscadorPerfil extends React.Component{
                     <div className='divBotonesBuscador'>
                         <input id='bSeguir' type='button' value='Seguir' disabled={this.state.bSeguir} style={{background:`${this.state.colorBseguir}`}} onClick={this.handleCLick}></input>
                         <input id='bDejarSeguir' type='button' value='Dejar de seguir' disabled={this.state.bDejarSeguir} style={{background:`${this.state.colorBDejarSeguir}`}} onClick={this.handleCLick}></input>
+                        {
+                            this.state.verBotonMensaje
+                            ?
+                            <input type='button' value='Enviar mensaje' onClick={this.handleCLickChat}></input>
+                            :
+                            <div style={{display:'none'}}></div>
+                        }
+                        
                     </div>
                     
                 </div>

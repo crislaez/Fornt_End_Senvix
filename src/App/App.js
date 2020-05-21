@@ -26,6 +26,7 @@ class App extends React.Component{
                 botonPerfil:false,
                 indiceComponenteComentarios:'',
                 usuario:[],
+                usuarioParaChat:''
             }
     }
     
@@ -125,6 +126,11 @@ class App extends React.Component{
         this.setState({ventanaRegistro: !this.state.ventanaRegistro});
     }
 
+    //funcion para qeu se habra la ventana del chat, se la pasaremos al componenteBuscadorPerfil
+    funcionChat = (id) => {
+        this.setState({cambioventana:'bChat', usuarioParaChat:id});
+    }
+
     render(){
 
         return(
@@ -153,6 +159,8 @@ class App extends React.Component{
                 funcionAparecerMenuLateral={this.funcionAparecerMenuLateral}
                 handleClickAsideBuscadorPerfil={this.handleClickAsideBuscadorPerfil}
                 usuario={this.state.usuario}
+                funcionChat={this.funcionChat}
+                usuarioParaChat={this.state.usuarioParaChat}
                 ></Section>
                 <Footer></Footer>
             </div>

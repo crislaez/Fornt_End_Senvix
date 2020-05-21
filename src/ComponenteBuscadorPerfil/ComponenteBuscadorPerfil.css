@@ -15,7 +15,7 @@
     width: 10%;
     height: 130px;
     margin-top: 55px;
-    margin-left: 25%;
+    margin-left: 23%;
     border: 2px solid grey;
     overflow: hidden;
     border-radius: 50%;
@@ -32,25 +32,27 @@
     margin-top: 90px;
     margin-left: 3%;
     color: white;
+    /* background: blue; */
     text-shadow: 3px 3px 3px grey;
     letter-spacing: 10px;
     float: left;
 }
 
 .divBotonesBuscador{
-    width: 30%;
+    width: 38%;
     height: 100px;
-    margin-top: 40px;
+    margin-top: 50px;
     /* background: gold; */
+    margin-top: 70px;
     margin-left: 1%;
     float: left;
 }
 
 .divBotonesBuscador input{
-    width: 35%;
+    width: 30%;
     height: 50px;
     border-radius: 5px;
-    margin-top: 70px;
+    margin-top: 40px;
     border: none;
     margin-left: 2%;
     background: #61dafb;
