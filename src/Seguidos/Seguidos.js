@@ -28,13 +28,17 @@ class Seguidos extends React.Component{
 
     getFetch = async () => {
         let arrayAuxioliarDatos = [];
-
-        for await (let valor of this.props.arraySeguidos){
-            let data = await fetch(process.env.REACT_APP_DATABASE_URL+'/userByIdLimit/'+valor.id_usuario_seguido, {method:'GET'})
-            let response = await data.json()
-            arrayAuxioliarDatos.push(response.data[0]);           
+        // console.log(this.props.arraySeguidos.length)
+        if(this.props.arraySeguidos.length !== 0){
+            // console.log('dentro')
+            for await (let valor of this.props.arraySeguidos){
+                let data = await fetch(process.env.REACT_APP_DATABASE_URL+'/userByIdLimit/'+valor.id_usuario_seguido, {method:'GET'})
+                let response = await data.json()
+                arrayAuxioliarDatos.push(response.data[0]);           
+            }
+            this.setState({arraySeguidos:arrayAuxioliarDatos});
         }
-        this.setState({arraySeguidos:arrayAuxioliarDatos});
+        
     }
 
     render(){
@@ -51,7 +55,7 @@ class Seguidos extends React.Component{
                         )
                     })
                     :
-                    <div style={{display:'none'}}></div>
+                    <div className='vacio'><p>Aun no sigues a nadie</p></div>
                 }
             </div>
         )

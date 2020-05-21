@@ -12,6 +12,8 @@ Senvix es una red social de subir videos (React)
 <img src="https://github.com/crislaez/Fornt_End_Senvix/blob/master/src/img/foto_proyecto_4.PNG" />
 <hr>
 <img src="https://github.com/crislaez/Fornt_End_Senvix/blob/master/src/img/foto_proyecto_5.PNG" />
+<hr>
+<img src="https://github.com/crislaez/Fornt_End_Senvix/blob/master/src/img/foto_proyecto_6.PNG" />
 
 ### Que hace el proyecto
 

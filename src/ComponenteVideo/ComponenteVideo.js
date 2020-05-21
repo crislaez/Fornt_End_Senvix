@@ -35,7 +35,7 @@ class ComponenteVideo extends React.Component{
                     if(response.success){
                         //llamamos a la funcion que est a en perfil para que recarge la pantalla
                         const getFetch = this.props.getFetch;
-                        getFetch(process.env.REACT_APP_DATABASE_URL+'/video/'+localStorage.getItem('primariKey'), true);
+                        getFetch(process.env.REACT_APP_DATABASE_URL+'/video/'+localStorage.getItem('primariKey'), 1);
                     }   
                 })                
                 sweet("Cerrado sesion correctamente", { icon: "success", });
