@@ -154,7 +154,7 @@ class ComponenteBuscadorPerfil extends React.Component{
 
                 <div className='divContenedorBuscador'>
                     {
-                        this._isMount && this.state.arrayUsuarioBuscado.toString()
+                        this._isMount && this.state.arrayUsuarioBuscado.toString() && this.state.arrayUsuarioBuscado[0].id_video 
                         ?
                         this.state.arrayUsuarioBuscado.map( (dato, key) => {
                             return(
@@ -172,7 +172,9 @@ class ComponenteBuscadorPerfil extends React.Component{
                             )
                         })
                         :
-                        <div></div>
+                        <div className='divNohayVideos'>
+                            <h3>El usuario aun no ha subido ningun video</h3>
+                        </div>
                     }
                 </div>
             </article>
