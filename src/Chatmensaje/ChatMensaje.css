@@ -1,0 +1,19 @@
+.divCajitaChat{
+
+    min-width: 70%;
+    height: 50px;
+    border-radius: 5px;
+    margin-left: 1%;
+    margin-right: 1%;
+    background: #F0F4F5;
+    box-shadow: 3px 3px 3px gray;
+    margin-top: 10px;
+    /* float: left; */
+
+}
+
+.divCajitaChat p{
+    margin-left: 1%;
+    margin-top: 1%;
+    margin-top: 5px;
+}

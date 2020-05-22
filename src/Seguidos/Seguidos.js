@@ -42,7 +42,7 @@ class Seguidos extends React.Component{
     }
 
     render(){
-        console.log(this.state.arraySeguidos);
+        // console.log(this.state.arraySeguidos);
 
         return(
             <div className='divSeguidos' style={{height:`${this.props.aparecerSeguidos}`}}>                  

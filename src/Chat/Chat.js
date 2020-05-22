@@ -3,10 +3,13 @@ import React from 'react';
 import './Chat.css';
 //services
 import FuncionesFetch from '../services/services';
-
+//componente 
+import ChatMensaje from '../Chatmensaje/ChatMensaje';
 class Chat extends React.Component{
 
     _isMount = false;
+    _flotar = 'left';
+    _intervalo;
 
     constructor(props){
         super(props)
@@ -14,7 +17,8 @@ class Chat extends React.Component{
             {
                 indice:'',
                 nombre:'',
-                mensaje:''
+                mensaje:'',
+                arrayChat:[],
             }
     }
 
@@ -24,19 +28,22 @@ class Chat extends React.Component{
             this.setState({indice:this.props.usuarioParaChat.indice, nombre:this.props.usuarioParaChat.nombre});
             //llamamos a la funcion que recuperara todos los mesajes que se han enviado los 2 osuarios
             this.fetchGetMensajes();
+
+            this._intervalo = setInterval( () => {
+                this.fetchGetMensajes();
+            },1000)
         }
     }
 
     fetchGetMensajes = () => {
         let data = new URLSearchParams(`id_usuario_uno=${localStorage.getItem('primariKey')}&id_usuario_dos=${this.props.usuarioParaChat.indice}`);
         FuncionesFetch.getChatUserFetch(data)
-        .then(response => {
-            console.log(response.data)
-        })
+        .then(response =>  this.setState({arrayChat:response.data}))
     }
 
-    componentWillMount(){
+    componentWillUnmount(){
         this._isMount = false;
+        clearInterval(this._intervalo);
     }
 
     handelSubmit = (event) => {
@@ -55,7 +62,7 @@ class Chat extends React.Component{
     }
 
     render(){
-        // console.log(this.state.indice)
+        console.log(this.state.arrayChat)
         return(
             <article className='divChat'>
 
@@ -64,6 +71,22 @@ class Chat extends React.Component{
                 </div>
 
                 <div className='contenedorChat'>
+                    {
+                        this._isMount && this.state.arrayChat.toString()
+                        ?
+                        this.state.arrayChat.map( (dato, key) => {
+                            if(dato.id_usuario_uno == localStorage.getItem('primariKey')){
+                               this._flotar = 'left';
+                            }else{
+                                this._flotar = 'right'
+                            }
+                            return(
+                                <ChatMensaje key={key} id_chat={dato.id_chat} id_usuario_uno={dato.id_usuario_uno} mensaje_chat={dato.mensaje_chat} flotar={this._flotar}></ChatMensaje>
+                            )
+                        })
+                        :
+                        <div></div>
+                    }
                 </div>
 
                 <form onSubmit={this.handelSubmit} action='' method='' encType='multipart/form-data'>
