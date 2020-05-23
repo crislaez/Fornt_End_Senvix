@@ -3,6 +3,8 @@ import React from 'react';
 import './ComponenteComentarios.css'
 //alert
 import sweet from 'sweetalert';
+//services
+import FuncionesFetch from '../services/services';
 //Componente
 import Comentario from '../Comentario/Comentario'
 class ComponenteComentarios extends React.Component{
@@ -64,21 +66,16 @@ class ComponenteComentarios extends React.Component{
         else{
             const data = new URLSearchParams(`id_video=${this.props.indiceComponenteComentarios}&id_comentario=${''}&comentario=${this.state.comentario}&usuario=${this.state.usuario}`);
 
-            fetch(process.env.REACT_APP_DATABASE_URL+'/addComent',{method:'POST', body:data})
-            .then(data => data.json())
+            FuncionesFetch.addComent(data)
             .then(response => {
                 sweet('Ok','Mensaje enviado','success');
-                // console.log(response);
                 //volvemos a llamar a esta fucion fetch para cargar los comentarios
                 this.getFetcComponetes(process.env.REACT_APP_DATABASE_URL+'/getComent/'+this.props.indiceComponenteComentarios,false);
             })
-            .catch(err => {
-                console.log(err.message);
-            })
+            .catch(err => console.log(err));
         }
         
-        this.setState({comentario:''})
-   
+        this.setState({comentario:''});   
     }
 
     componentWillUnmount(){

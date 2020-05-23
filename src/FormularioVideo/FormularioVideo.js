@@ -3,7 +3,8 @@ import React from 'react';
 import './FormularioVideo.css';
 //alert
 import sweet from 'sweetalert';
-
+//services
+import FuncionesFetch from '../services/services';
 class FormularioVideo extends React.Component{
 
     constructor(props){
@@ -18,25 +19,26 @@ class FormularioVideo extends React.Component{
     handleSubmit = (event) => {
         event.preventDefault();
 
-        if(!this.state.video){
+        if(!localStorage.getItem('primariKey')){
+            sweet('Oops','Debes estar logeado','error')
+        }
+        else if(!this.state.video){
             sweet('Oops','Ingrese un video','error')
         }
         else if(!this.state.tituloVideo){
             sweet('Oops','Ingrese uin titulo para el video','error')
         }
         else{
-
             let formData = new FormData();
             formData.append('id_usuario', localStorage.getItem('primariKey'));
             formData.append('id_video', '');
             formData.append('video', this.state.video);
             formData.append('titulo_video', this.state.tituloVideo);
 
-            fetch('http://localhost:3001/api/addVideo',{method:'POST', body:formData})
-            .then(data => data.json())
-            .then(response => {
-               
-                if(response.success){
+            //llamamos ala funcion que esta en services y le enviamos os datos del formulario
+            FuncionesFetch.addVideo(formData)
+            .then(response => {               
+                if(response.success){                    
                     //llamamos a la funcion que esta en Perfil para que se cierra este componente de formulario video
                     sweet('Ok','video subido correctamente','success')
                     const handleClick = this.props.handleClick;
@@ -47,13 +49,13 @@ class FormularioVideo extends React.Component{
                 }
                 else{
                     sweet('Oops','ha ocurrido un error','error');
-                }
-                   
+                }                   
             })
+            .catch(err => console.log(err))
 
             this.setState({tituloVideo: ''})
         }       
-    }
+    }    
 
     render(){
 

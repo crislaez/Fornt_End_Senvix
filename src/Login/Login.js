@@ -5,6 +5,8 @@ import './Login.css'
 import CryptoJS from 'crypto-js/md5';
 //alert
 import sweet from 'sweetalert';
+//services
+import FuncionesFetch from '../services/services';
 class Login extends React.Component{
 
     constructor(props){
@@ -33,11 +35,18 @@ class Login extends React.Component{
 
             const data = new URLSearchParams(`correo=${this.state.correo}&clave=${JSON.stringify(hash)}`)
 
-            fetch(process.env.REACT_APP_DATABASE_URL+'/login', {method:'POST', body:data})
-            .then(data => data.json())
+            FuncionesFetch.login(data)
             .then(response => {
-
+                console.log(response)
                 if(response.data.toString()){
+                    //permitimos las notificacion
+                    Notification.requestPermission().then(function(result) {                    
+                        if(result == 'granted'){
+                            let notification = new Notification("Gracias majo!");
+                        }
+                        
+                    });
+
                     sweet('Logueado','logueado correctamente','success');
                     localStorage.setItem('primariKey',response.data[0].id_usuario);
                     localStorage.setItem('nombreUsuario',response.data[0].nombre);

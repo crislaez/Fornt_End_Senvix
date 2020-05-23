@@ -51,7 +51,7 @@ class Seguidos extends React.Component{
                     ?
                     this.state.arraySeguidos.map( (dato, key) => {
                         return(
-                             <CajaSeguido key={key} id_usuario={dato.id_usuario} avatar={dato.avatar} nombre={dato.nombre} handleClickAsideBuscadorPerfil={this.props.handleClickAsideBuscadorPerfil} handleClicSeguido={this.props.handleClicSeguido} getFetch={this.props.getFetch}></CajaSeguido>
+                             <CajaSeguido key={key} id_usuario={dato.id_usuario} avatar={dato.avatar} nombre={dato.nombre} handleClickAsideBuscadorPerfil={this.props.handleClickAsideBuscadorPerfil} handleClicSeguido={this.props.handleClicSeguido} getFetch={this.props.getFetch} funcionChat={this.props.funcionChat}></CajaSeguido>
                         )
                     })
                     :

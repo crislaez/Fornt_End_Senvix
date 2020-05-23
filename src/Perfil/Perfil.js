@@ -77,9 +77,7 @@ class Perfil extends React.Component{
     }
 
     render(){
-        // console.log(this.state.arrayVideosUsuario)
-        // console.log(this.state.foto);
-        // console.log(this.state.arraySeguidos)
+
         return(
             <article className='divPerfil'>
 
@@ -91,7 +89,7 @@ class Perfil extends React.Component{
                     <h2>Bienvenido {this.state.usuario}</h2>                
                     <input type='button' value='Subir video' onClick={this.handleClick}></input>
                     <input type='button' value='Ver a quien sigo' onClick={this.handleClicSeguido}></input>
-                    <Seguidos aparecerSeguidos={this.state.aparecerSeguidos} handleClicSeguido={this.handleClicSeguido} arraySeguidos={this.state.arraySeguidos} handleClickAsideBuscadorPerfil={this.props.handleClickAsideBuscadorPerfil} getFetch={this.getFetch}></Seguidos>
+                    <Seguidos aparecerSeguidos={this.state.aparecerSeguidos} handleClicSeguido={this.handleClicSeguido} arraySeguidos={this.state.arraySeguidos} handleClickAsideBuscadorPerfil={this.props.handleClickAsideBuscadorPerfil} getFetch={this.getFetch} funcionChat={this.props.funcionChat}></Seguidos>
                         
                 </div>
 

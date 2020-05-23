@@ -3,26 +3,45 @@ import React from 'react';
 import './CajaSeguido.css';
 //alert
 import sweet from 'sweetalert';
+//servicios
+import FuncionesFetch from '../services/services'
 
 class CajaSeguido extends React.Component{
 
     handleClickVerPerfil = (event) => {
-        let id = event.target.parentNode.parentNode.dataset.nombre
+        let id = event.target.parentNode.parentNode.dataset.codigo
 
-        console.log('Ver perfil');
+        //llamamos a la funcion que esta en app.js para pasarle el nombre del usuario a buscar
+        const handleClickAsideBuscadorPerfil = this.props.handleClickAsideBuscadorPerfil;
 
-        fetch(process.env.REACT_APP_DATABASE_URL+'/getVideoName/'+id,{method:'GET'})
-        .then(data => data.json())
+        //llamamos a la funcion getVideo name qeu esta en la carpeta services
+        FuncionesFetch.getVideoName(id)
         .then(response => {
-            if(response.data.toString()){                    
-                //llamamos a la funcion que esta en Seguidos para cerrar el menu
-                const handleClicSeguido = this.props.handleClicSeguido;
-                handleClicSeguido();
-                // llamamos a la funcion que esta en app.js para pasarle el nombre del usuario a buscar
-                const handleClickAsideBuscadorPerfil = this.props.handleClickAsideBuscadorPerfil;
-                handleClickAsideBuscadorPerfil(response.data);
+
+            if(response.data.toString()){
+            
+                handleClickAsideBuscadorPerfil(response.data);                   
             }
-        });
+            else{
+                FuncionesFetch.getUserById(id)
+                .then(response => handleClickAsideBuscadorPerfil(response.data))
+                .catch(err => console.log(err))
+            }
+            //llamamos a la funcion que esta en app.js para cerrar el menu buscador
+            const funcionAparecerMenuLateral = this.props.funcionAparecerMenuLateral
+            funcionAparecerMenuLateral();
+        })
+        .catch(err => console.log(err));
+    }
+
+    handleClickEnviarMensaje = () => {
+        let usuario = 
+            {
+                nombre:this.props.nombre,
+                indice:this.props.id_usuario
+            };
+        const funcionChat = this.props.funcionChat;
+        funcionChat(usuario);
     }
 
     handleClickDejarDeSeguir = (event) => {
@@ -71,6 +90,15 @@ class CajaSeguido extends React.Component{
                 <div className='divBotonCagitaSeguido'>
                     <input type='button' value='Ver perfil' onClick={this.handleClickVerPerfil}></input>
                     <input type='button' value='Dejar de seguir' onClick={this.handleClickDejarDeSeguir}></input>
+                    {
+                        this.props.id_usuario != localStorage.getItem('primariKey')
+                        ?
+                        <input type='button' value='Mensajes' onClick={this.handleClickEnviarMensaje}></input>
+                        :
+                        <div style={{display:'none'}}></div>
+
+                    }
+                    
                 </div>
 
             </div>

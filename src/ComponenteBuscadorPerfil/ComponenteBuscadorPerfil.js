@@ -122,10 +122,8 @@ class ComponenteBuscadorPerfil extends React.Component{
     }
 
     render(){
-        // console.log(this.state.arrayUsuarioBuscado);
-        // console.log(this.state.usuario);
-        // console.log(this.state.avatar);
-        // console.log(this.state.banner);
+        console.log(this.props.usuario[0].id_usuario+' usuario buscado')
+        console.log(localStorage.getItem('primariKey')+' usuario logueado')
 
         return(
             <article className='articleBuscador'>
@@ -140,8 +138,8 @@ class ComponenteBuscadorPerfil extends React.Component{
                     <div className='divBotonesBuscador'>
                         <input id='bSeguir' type='button' value='Seguir' disabled={this.state.bSeguir} style={{background:`${this.state.colorBseguir}`}} onClick={this.handleCLick}></input>
                         <input id='bDejarSeguir' type='button' value='Dejar de seguir' disabled={this.state.bDejarSeguir} style={{background:`${this.state.colorBDejarSeguir}`}} onClick={this.handleCLick}></input>
-                        {
-                            this.state.verBotonMensaje
+                        {   //esto lo hacemos para qeu si el usuario es el mismo del usuario buscado, no se pueda enviar mensajes a si mismo
+                            this.state.verBotonMensaje && this.props.usuario[0].id_usuario != localStorage.getItem('primariKey')
                             ?
                             <input type='button' value='Enviar mensaje' onClick={this.handleCLickChat}></input>
                             :

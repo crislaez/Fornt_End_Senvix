@@ -3,6 +3,7 @@ import React from 'react';
 import './Aside.css';
 //alert
 import sweet from 'sweetalert';
+//services
 import FuncionesFetch from '../services/services';
 
 class Aside extends React.Component{
@@ -38,46 +39,30 @@ class Aside extends React.Component{
 
     handleClick = (event) => {
         let id = event.target.parentNode.dataset.codigo;
-        // console.log(id)
+
         //llamamos a la funcion que esta en app.js para pasarle el nombre del usuario a buscar
         const handleClickAsideBuscadorPerfil = this.props.handleClickAsideBuscadorPerfil;
 
          //llamamos a la funcion getVideo name qeu esta en la carpeta services
-            FuncionesFetch.getVideoName(id)
-            .then(response => {
-                // console.log(response)
-                if(response.data.toString()){
-                    // console.log(response.data);                    
-                    handleClickAsideBuscadorPerfil(response.data);                   
-                }
-                else{
-                    FuncionesFetch.getUserById(id)
-                    .then(response => {
-                        console.log(response.data)
-                        let usuario = 
-                            [
-                                {
-                                    avatar:response.data.avatar,
-                                    banner:response.data.banner,
-                                    id_usuario:response.data.id_usuario,
-                                    id_video:'',
-                                    nombre:response.data.nombre,
-                                    titulo_video:'',
-                                    video:''
-                                }
-                            ];                        
-                        handleClickAsideBuscadorPerfil(response.data);                        
-                    })
-                    .catch(err => console.log(err.message))
-                }
+        FuncionesFetch.getVideoName(id)
+        .then(response => {
 
-                //llamamos a la funcion que esta en app.js para cerrar el menu buscador
-                const funcionAparecerMenuLateral = this.props.funcionAparecerMenuLateral
-                funcionAparecerMenuLateral();
-                
-                this.setState({arrayUsuariosEncontrados:[]})
-            })
-            .catch(err => console.log(err.message));
+            if(response.data.toString()){
+            
+                handleClickAsideBuscadorPerfil(response.data);                   
+            }
+            else{
+                FuncionesFetch.getUserById(id)
+                .then(response => handleClickAsideBuscadorPerfil(response.data))
+                .catch(err => console.log(err))
+            }
+            //llamamos a la funcion que esta en app.js para cerrar el menu buscador
+            const funcionAparecerMenuLateral = this.props.funcionAparecerMenuLateral
+            funcionAparecerMenuLateral();
+            
+            this.setState({arrayUsuariosEncontrados:[]})
+        })
+        .catch(err => console.log(err));
     }
 
     render(){

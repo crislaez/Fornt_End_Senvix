@@ -18,11 +18,26 @@ const getUserById = (data) => {
     return fetch(process.env.REACT_APP_DATABASE_URL+'/user/'+data, {method:'GET'}).then(data => data.json())
 }
 
+const login = (data) => {
+    return fetch(process.env.REACT_APP_DATABASE_URL+'/login', {method:'POST', body:data}).then(data => data.json())
+}
+
+const addVideo = (data) => {
+    return fetch(process.env.REACT_APP_DATABASE_URL+'/addVideo',{method:'POST', body:data}).then(data => data.json())
+}
+
+const addComent = (data) => {
+    return fetch(process.env.REACT_APP_DATABASE_URL+'/addComent',{method:'POST', body:data}).then(data => data.json())
+}
+
 export default 
     {
         addChatFetch,
         getChatUserFetch,
         getVideoName,
         getUserByName,
-        getUserById
+        getUserById,
+        login,
+        addVideo,
+        addComent
     };

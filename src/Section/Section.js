@@ -24,7 +24,7 @@ class Section extends React.Component{
                     :
                     this.props.cambioventana === 'bPerfil'
                     ?
-                    <Perfil handleClickInicioPerfil={this.props.handleClickInicioPerfil} handleClickAsideBuscadorPerfil={this.props.handleClickAsideBuscadorPerfil}></Perfil>
+                    <Perfil handleClickInicioPerfil={this.props.handleClickInicioPerfil} handleClickAsideBuscadorPerfil={this.props.handleClickAsideBuscadorPerfil} funcionChat={this.props.funcionChat}></Perfil>
                     :
                     this.props.cambioventana === 'bComponeteComentarios'
                     ?

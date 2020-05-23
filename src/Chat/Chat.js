@@ -52,13 +52,25 @@ class Chat extends React.Component{
         let data = new URLSearchParams(`id_chat=${''}&id_usuario_uno=${localStorage.getItem('primariKey')}&id_usuario_dos=${this.state.indice}&mensaje_chat=${this.state.mensaje}`);
         //llamamos al funcion que tiene el fetch que tenemos en la carpeta services que ingresara el mensaje del chat
         FuncionesFetch.addChatFetch(data)
-        .then(response => {
-            console.log(response.success)
-        })
+        .then(response => console.log(response.success))
+        .catch(err => console.log(err));
+        
         //llamamos a la funcion que recuperara todos los mesajes que se han enviado los 2 osuarios
         this.fetchGetMensajes();
         //limpiamos el campo de texto
-        this.setState({mensaje:''})
+        this.setState({mensaje:''});
+        //creamos una notificacion para que le llege al usuario
+        this.spawnNotification('Te ha llegado un mensaje','icono.png','Notificacion');
+    }
+
+    
+    spawnNotification = (theBody,theIcon,theTitle) => {
+        var options = {
+            body: theBody,
+            icon: theIcon
+        }
+        var n = new Notification(theTitle,options);
+        setTimeout(n.close.bind(n), 5000); 
     }
 
     render(){
