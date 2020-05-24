@@ -1,6 +1,6 @@
 aside{
     width: 0%;
-    height: 900px;
+    min-height: 70px;
     position: absolute;
     overflow: hidden;
     transition: all 300ms;
@@ -50,7 +50,8 @@ aside form input[type='submit']:hover{
     background: white;
     border-radius: 5px;
     box-shadow: 3px 3px 3px gray;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     float: left;
 }
 
