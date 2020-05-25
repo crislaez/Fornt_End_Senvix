@@ -55,7 +55,7 @@ class ComponenteBuscadorPerfil extends React.Component{
                 this.setState({bSeguir:false, bDejarSeguir:true, colorBseguir:'#61dafb', colorBDejarSeguir:'#282c34',verBotonMensaje:false});               
             }
         })
-        .catch(err => console.log(err.message))
+        .catch(err => console.log(err))
     }
 
     componentWillUnmount(){

@@ -30,6 +30,10 @@ const addComent = (data) => {
     return fetch(process.env.REACT_APP_DATABASE_URL+'/addComent',{method:'POST', body:data}).then(data => data.json())
 }
 
+const deleteChat = (data) => {
+    return fetch(process.env.REACT_APP_DATABASE_URL+'/deleteChat/'+data, {method:'DELETE'}).then(data => data.json());
+}
+
 export default 
     {
         addChatFetch,
@@ -39,5 +43,6 @@ export default
         getUserById,
         login,
         addVideo,
-        addComent
+        addComent,
+        deleteChat
     };

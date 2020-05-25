@@ -64,7 +64,7 @@ class CajaSeguido extends React.Component{
                     sweet('Ok','Ya no le sigues','success');
                     //llamamos a la funcion que esta en Seguidos para que recarge la funcion que muestre a las personas que se sigue
                     const getFetch = this.props.getFetch;
-                    //llamamos a la funcion fetch que esta abajo para conseguir todos los seguidores
+                    
                     getFetch(process.env.REACT_APP_DATABASE_URL+'/getFolowers/'+localStorage.getItem('primariKey'), 3); 
                 });
 
@@ -76,6 +76,7 @@ class CajaSeguido extends React.Component{
     }
 
     render(){
+        console.log(this.props.color)
         return(
             <div data-nombre={this.props.nombre} data-codigo={this.props.id_usuario} className='divCagitaSeguidos'>
 
@@ -91,9 +92,13 @@ class CajaSeguido extends React.Component{
                     <input type='button' value='Ver perfil' onClick={this.handleClickVerPerfil}></input>
                     <input type='button' value='Dejar de seguir' onClick={this.handleClickDejarDeSeguir}></input>
                     {
-                        this.props.id_usuario != localStorage.getItem('primariKey')
+                        this.props.id_usuario != localStorage.getItem('primariKey') && this.props.color
                         ?
-                        <input type='button' value='Mensajes' onClick={this.handleClickEnviarMensaje}></input>
+                        <input type='button' value='Mensajes' onClick={this.handleClickEnviarMensaje} style={{background:'#61dafb'}}></input>
+                        :
+                        this.props.id_usuario != localStorage.getItem('primariKey') && !this.props.color
+                        ?
+                        <input type='button' value='Mensajes' onClick={this.handleClickEnviarMensaje} ></input>
                         :
                         <div style={{display:'none'}}></div>
 

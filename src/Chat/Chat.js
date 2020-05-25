@@ -35,6 +35,7 @@ class Chat extends React.Component{
         }
     }
 
+    //funcion qeu recargara el array
     fetchGetMensajes = () => {
         let data = new URLSearchParams(`id_usuario_uno=${localStorage.getItem('primariKey')}&id_usuario_dos=${this.props.usuarioParaChat.indice}`);
         FuncionesFetch.getChatUserFetch(data)
@@ -93,7 +94,7 @@ class Chat extends React.Component{
                                 this._flotar = 'right'
                             }
                             return(
-                                <ChatMensaje key={key} id_chat={dato.id_chat} id_usuario_uno={dato.id_usuario_uno} mensaje_chat={dato.mensaje_chat} flotar={this._flotar}></ChatMensaje>
+                                <ChatMensaje key={key} id_chat={dato.id_chat} id_usuario_uno={dato.id_usuario_uno} mensaje_chat={dato.mensaje_chat} flotar={this._flotar} fetchGetMensajes={this.fetchGetMensajes}></ChatMensaje>
                             )
                         })
                         :

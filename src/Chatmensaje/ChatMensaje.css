@@ -1,5 +1,4 @@
 .divCajitaChat{
-
     min-width: 70%;
     height: 50px;
     border-radius: 5px;
@@ -8,12 +7,30 @@
     background: #F0F4F5;
     box-shadow: 3px 3px 3px gray;
     margin-top: 10px;
-    /* float: left; */
+    
 
 }
 
 .divCajitaChat p{
+    width: 90%;
     margin-left: 1%;
-    margin-top: 1%;
-    margin-top: 5px;
+    margin-top: 10px;
+    /* background: blue; */
+    float: left;
+}
+
+.divCajitaChat input{
+    margin-top: 10px;
+    width: 7%;
+    height: 30px;
+    border: none;
+    background: #282c34;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    float: left;
+}
+
+.divCajitaChat input:hover{
+    background: #575757;
 }

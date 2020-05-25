@@ -30,21 +30,23 @@
 .divTituloBuscador p{
     font-size: 70px;
     margin-top: 90px;
-    margin-left: 3%;
-    color: white;
-    /* background: blue; */
+    margin-left: 3%;    
     text-shadow: 3px 3px 3px grey;
-    letter-spacing: 10px;
+    letter-spacing: 2px;
     float: left;
 }
 
+.divTituloBuscador p strong{
+    color: white;
+}
+
 .divBotonesBuscador{
-    width: 38%;
+    width: 32%;
     height: 100px;
     margin-top: 50px;
-    /* background: gold; */
     margin-top: 70px;
     margin-left: 1%;
+    /* background: grey; */
     float: left;
 }
 
@@ -69,6 +71,5 @@
     width: 100%;
     height: 630px;
     overflow-y: scroll;
-    /* background: blue; */
     float: left;
 }
