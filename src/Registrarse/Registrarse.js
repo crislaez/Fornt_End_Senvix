@@ -5,6 +5,8 @@ import './Registrarse.css';
 import CryptoJS from 'crypto-js/md5';
 //alert
 import sweet from 'sweetalert';
+//services
+import FuncionesFetch from '../services/services';
 class Registrarse extends React.Component{
 
     constructor(props){
@@ -69,10 +71,8 @@ class Registrarse extends React.Component{
             formData.append('avatar', this.state.avatar);
             formData.append('banner', this.state.banner);
        
-            fetch(process.env.REACT_APP_DATABASE_URL+'/addUser',{method:'POST', body: formData})
-            .then(data => data.json())
+            FuncionesFetch.addUser(formData)
             .then(response => {
-
                 sweet('Gracias por registrarse','registrado corrrectamente','success');
                 //llamamos a la funcion para que se cierre la ventana de registro
                 const funcionAparecerDesaparecerRegistro = this.props.funcionAparecerDesaparecerRegistro;
@@ -85,9 +85,7 @@ class Registrarse extends React.Component{
                     funcionAparecerDesaparecerLogin();
                 }          
             })   
-            .catch(err => {
-                console.log(err.message)
-            })
+            .catch(err => {console.log(err)})
         }
 
         this.setState({nombre:'', apellido:'', nacimiento:'', sexo:'', correo:'', clave:'', rClave:''});
@@ -109,23 +107,23 @@ class Registrarse extends React.Component{
                     </div>
 
                     <form onSubmit={this.handleSubmit} action='' method='' encType='multipart/form-data'>
-                        <input type='text' value={this.state.nombre} onChange={(params) => {this.setState({nombre:params.target.value})}} placeholder='nombre...'></input>
+                        <input type='text' name='nombre' value={this.state.nombre} onChange={(params) => {this.setState({nombre:params.target.value})}} placeholder='nombre...'></input>
                         <br></br>
-                        <input type='text' value={this.state.apellido} onChange={(params) => {this.setState({apellido:params.target.value})}} placeholder='apellido...'></input>
+                        <input type='text' name='apellido' value={this.state.apellido} onChange={(params) => {this.setState({apellido:params.target.value})}} placeholder='apellido...'></input>
                         <br></br>
-                        <input type='date' value={this.state.nacimiento} onChange={(params) => {this.setState({nacimiento:params.target.value})}} placeholder='nacimineto'></input>
+                        <input type='date' name='nacimiento' value={this.state.nacimiento} onChange={(params) => {this.setState({nacimiento:params.target.value})}} placeholder='nacimineto'></input>
                         <br></br>
-                        <select value={this.state.sexo} onChange={(params) => {this.setState({sexo:params.target.value})}}>
+                        <select name='sexo' value={this.state.sexo} onChange={(params) => {this.setState({sexo:params.target.value})}}>
                             <option value='1'>--Seleccione Sexo--</option>
                             <option value='hombre'>Hombre</option>
                             <option value='mujer'>Mujer</option>
                         </select>
                         <br></br>
-                        <input type='email' value={this.state.correo} onChange={(params) => {this.setState({correo:params.target.value})}} placeholder='correo...'></input>
+                        <input type='email' name='email' value={this.state.correo} onChange={(params) => {this.setState({correo:params.target.value})}} placeholder='correo...'></input>
                         <br></br>
-                        <input type='password' value={this.state.clave} onChange={(params) => {this.setState({clave:params.target.value})}} placeholder='clave'></input>
+                        <input type='password' name='clave' value={this.state.clave} onChange={(params) => {this.setState({clave:params.target.value})}} placeholder='clave'></input>
                         <br></br>
-                        <input type='password' value={this.state.rClave} onChange={(params) => {this.setState({rClave:params.target.value})}} placeholder='repetir clave...'></input>
+                        <input type='password' name='clave' value={this.state.rClave} onChange={(params) => {this.setState({rClave:params.target.value})}} placeholder='repetir clave...'></input>
                         <br></br>
                         <label>Perfil:&nbsp; &nbsp;</label><input type='file' onChange={(params) => {this.setState({avatar:params.target.files[0]})}}></input>
                         <br></br>

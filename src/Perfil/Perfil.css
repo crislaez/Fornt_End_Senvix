@@ -15,11 +15,28 @@
     /* background: blue; */
     float: left;
 }
+
+
+
+.divTituloPerfil button{
+    margin-top: 110px;
+    width: 2.5%;
+    height: 40px;
+    border-radius: 50px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 27%;
+    background: #DFEBEF;    
+    float: left;
+}
+
+
 .divFotoPerfil{
     width: 7%;
     height: 102px;
     margin-top: 70px;
-    margin-left: 32%;
+    margin-left: 1%;
     border-radius: 50px;
     overflow: hidden;
     border: 2px solid grey;
@@ -79,4 +96,53 @@
     text-align: center;
     font-size: 50px;
     margin-top: 150px;
+}
+
+.divEditar{
+    width: 25%;
+    height: 150px;
+    background: white;
+    border: 1px solid gray;
+    margin-top: 70px;
+    margin-left: 1%;
+    box-shadow: 0px 0px 20px black;
+    border-radius: 5px;
+    position: absolute;
+}
+
+.divEditar label{
+    margin-left: 5%;
+    margin-top: 5px;    
+    float: none;
+}
+
+.labelPerfil{
+margin-right: 5%;
+}
+
+.divEditar input{
+    width: 70%;
+    height: 30px;
+    margin-top: 10px;
+    background: white;
+    border-radius: 0px;
+    border-bottom: 1px solid grey;
+    float: none;
+}
+
+.divEditar input:hover{
+    background: white;
+}
+
+.divEditar input[type='submit']{
+    width: 50%;
+    height: 40px;
+    margin-left: 25%;
+    margin-top: 20px;
+    border-radius: 5px;
+    background: #282c34;    
+}
+
+.divEditar input[type='submit']:hover{
+    background: #575757;
 }

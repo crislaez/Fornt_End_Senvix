@@ -1,10 +1,17 @@
 import React from 'react';
 //css
 import './Perfil.css';
+//font awesome
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCog} from '@fortawesome/free-solid-svg-icons';
+//alert
+import sweet from 'sweetalert';
 //componente
 import FormularioVideo from '../FormularioVideo/FormularioVideo';
 import ComponenteVideo from '../ComponenteVideo/ComponenteVideo';
 import Seguidos from '../Seguidos/Seguidos';
+//services
+import FuncionesFetch from '../services/services';
 class Perfil extends React.Component{
 
     _isMount = false;
@@ -20,7 +27,10 @@ class Perfil extends React.Component{
                 arrayVideosUsuario:[],
                 foto:'',
                 banner:'',
-                arraySeguidos:[]
+                arraySeguidos:[],
+                aparecerFormularioEditar:false,
+                editFotoPerfil:'',
+                editFotoBanner:''
             }
     }
 
@@ -76,6 +86,35 @@ class Perfil extends React.Component{
         
     }
 
+    handleClickAparecerFormularioEditar = () => {
+        this.setState({aparecerFormularioEditar:!this.state.aparecerFormularioEditar});
+    }
+
+    handleSubmitEditar = (event) => {
+        event.preventDefault();
+        if(!this.state.editFotoPerfil){
+            sweet('Oops','Escoja la foto de perfil','error');
+        }
+        else if(!this.state.editFotoBanner){
+            sweet('Oops','Escoja la foto del banner','error');
+        }else{
+            
+            let formData = new FormData();
+            formData.append('avatar',this.state.editFotoPerfil);
+            formData.append('banner',this.state.editFotoBanner);
+            //llamamos a la funcion que esta en services
+            FuncionesFetch.updateFilesUser(localStorage.getItem('primariKey'),formData)
+            .then(response => {
+                console.log(response);
+                if(response.success){
+                    this.handleClickAparecerFormularioEditar();
+                    window.location.reload(true);
+                }
+            })
+            .catch(err => console.log(err))
+        }
+    }
+
     render(){
 
         return(
@@ -83,6 +122,21 @@ class Perfil extends React.Component{
 
                 <div className='divTituloPerfil' style={{ background: `url(${this.state.banner}) 0 0/100% 270px` }} >
 
+                {
+                    this.state.aparecerFormularioEditar
+                    ?
+                    <form onSubmit={this.handleSubmitEditar} className='divEditar'>
+                        <label className='labelPerfil'>Perfil:</label><input type='file' onChange={(params) => {this.setState({editFotoPerfil:params.target.files[0]})}} ></input>
+                        <br></br>
+                        <label>Banner:</label><input type='file' onChange={(params) => {this.setState({editFotoBanner:params.target.files[0]})}} ></input>
+                        <br></br>
+                        <input type='submit' value='Cambiar'></input>
+                    </form>
+                    :
+                    <div style={{display:'none'}}></div>
+                }
+                    
+                    <button onClick={this.handleClickAparecerFormularioEditar}><FontAwesomeIcon className='icono' icon={faCog}></FontAwesomeIcon></button>
                     <div className='divFotoPerfil'>
                         <img src={this.state.foto} alt={this.state.foto}></img>
                     </div>

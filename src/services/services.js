@@ -34,6 +34,14 @@ const deleteChat = (data) => {
     return fetch(process.env.REACT_APP_DATABASE_URL+'/deleteChat/'+data, {method:'DELETE'}).then(data => data.json());
 }
 
+const updateFilesUser = (id,data) => {
+    return fetch(process.env.REACT_APP_DATABASE_URL+'/updateFilesUser/'+id,{method:'PUT', body:data}).then(data => data.json());
+}
+
+const addUser = (data) => {
+    return fetch(process.env.REACT_APP_DATABASE_URL+'/addUser',{method:'POST', body: data}).then(data => data.json())
+}
+
 export default 
     {
         addChatFetch,
@@ -44,5 +52,7 @@ export default
         login,
         addVideo,
         addComent,
-        deleteChat
+        deleteChat,
+        updateFilesUser,
+        addUser
     };
