@@ -1,7 +1,7 @@
 
 ## (front-end) SENVIX
 
-Senvix es una red social de subir videos (React.js)
+Senvix es una red social donde poder subir videos (React.js)
 
 <img src="https://github.com/crislaez/Fornt_End_Senvix/blob/master/src/img/foto_proyecto.PNG" />
 <hr>
@@ -21,7 +21,7 @@ Senvix es una red social de subir videos (React.js)
 
 ### Que hace el proyecto
 
-Una red social donde se pueden subir videos, comentarlos, ver los perfiles de los usuarios....
+Una red social donde se pueden subir videos, comentarlos, buscar y seguir a otros usuarios, chat privado...
  
 ### Donde pueden recibir ayuda los usuarios con el proyecto
  
